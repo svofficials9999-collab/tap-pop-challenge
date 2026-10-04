@@ -121,7 +121,7 @@ body.lowfx header{box-shadow:none}body.lowfx .stat{box-shadow:none}
 @media(prefers-reduced-motion:reduce){header{box-shadow:none}}
 
 /* v16: silver rings, sparkles, text depth, premium buttons. Additive only. */
-.ring{border-color:#e9eef9!important;box-shadow:0 0 14px #fff,0 0 26px #b8c4de,inset 0 0 14px #ffffffaa,inset 0 0 4px #8d99b8}
+.ring{border:5px solid #f4f7ff!important;border-color:#f4f7ff!important;background:radial-gradient(circle,#ffffff00 55%,#c9d3ee55 100%);box-shadow:0 0 0 1px #8d99b8,0 0 16px #fff,0 0 34px #c5d0ea,inset 0 0 16px #fffc,inset 0 0 5px #8d99b8}
 .sparkle{background:radial-gradient(circle,#fff 0 28%,var(--sk,#fff) 62%,transparent 72%);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);filter:drop-shadow(0 0 4px var(--sk,#fff));will-change:transform,opacity}
 h1,h2,h3,.eyebrow,label,.stat,.stats b,#score,#goal,#helpernote,.pop-txt,.score-pop{text-shadow:0 2px 3px #000b,0 0 10px #4fb4ff33}
 button{text-shadow:0 1px 2px #0009,0 0 6px #0004}
@@ -230,7 +230,7 @@ const text={te:{
  share:'ఫ్రెండ్‌కు ఛాలెంజ్ ↗',hint:'హింట్',again:'కొత్త గేమ్',retry:'మళ్లీ ప్రయత్నించు',daily:'📅 ఈ రోజు ఛాలెంజ్',next:'తదుపరి',nextlvl:'తర్వాతి లెవెల్ ▶',
  undo:'↶ వెనక్కి',shuf:'🔀 షఫుల్',burst:'🌈 బర్స్ట్',levels:'🧩 లెవెల్స్',prog:'🏅 నా ప్రోగ్రెస్',help:'?',
  ready_classic:'15 moves. 4+ గ్రూప్స్ వరుసగా కొట్టి కాంబో పెంచండి! 7+ = 💣, 10+ = ⚡',ready_rush:'రెడీ? మొదటి ట్యాప్‌తో 60 సెకన్లు మొదలు! 7+ గ్రూప్ = +3 సెకన్లు, 10+ = +5.',ready_zen:'ప్రశాంతంగా ఆడండి. టైమ్ లేదు, moves లెక్క లేదు.',ready_puzzle:'పైన టార్గెట్ చూడండి. moves అయిపోయేలోపు పూర్తి చేయండి. కింద ఉన్న 💣 🔫 🎯 🌈 ని డ్రాగ్ చేసి వాడండి.',
- single:'ఒంటరి బ్లాక్ కాదు. 2+ గ్రూప్ ఎంచుకోండి.',end:'గేమ్ పూర్తయింది!',footer:'ఆఫ్‌లైన్ ఆట · Login లేదు · Ads లేవు<br>మీ స్కోర్ ఈ browserలో మాత్రమే సేవ్ అవుతుంది.<br>Pop Raja v16',
+ single:'ఒంటరి బ్లాక్ కాదు. 2+ గ్రూప్ ఎంచుకోండి.',end:'గేమ్ పూర్తయింది!',footer:'ఆఫ్‌లైన్ ఆట · Login లేదు · Ads లేవు<br>మీ స్కోర్ ఈ browserలో మాత్రమే సేవ్ అవుతుంది.<br>Pop Raja v17',
  copy:'లింక్ కాపీ అయింది. ఫ్రెండ్‌కు పంపండి!',manual:'ఈ లింక్ కాపీ చేసి పంపండి:',challenge:'అందరికీ ఇదే బోర్డ్. మీ స్కోర్ దాటమని చెప్పండి!',today:'ఈ రోజు ఛాలెంజ్ (అందరికీ ఒకే బోర్డ్)',
  hintmsg:'తెల్ల గీత ఉన్న గ్రూప్ చూడండి.',plus:'పాయింట్లు',finish:'మళ్లీ ఆడాలా? కొత్త గేమ్ నొక్కండి.',combo:'కాంబో',lvl:'లెవెల్',newbest:'కొత్త బెస్ట్! 🎉',lvlup:'లెవెల్ అప్!',
  dailydone:'ఈ రోజు ఛాలెంజ్ పూర్తి',streak:'రోజుల స్ట్రీక్',bigg:'పెద్ద గ్రూప్',pu:'పవర్-అప్స్',allstars:'అద్భుతం! 3 స్టార్స్',
@@ -252,7 +252,7 @@ en:{
  share:'Challenge a friend ↗',hint:'Hint',again:'New game',retry:'Retry',daily:'📅 Daily challenge',next:'Next',nextlvl:'Next level ▶',
  undo:'↶ Undo',shuf:'🔀 Shuffle',burst:'🌈 Burst',levels:'🧩 Levels',prog:'🏅 My progress',help:'?',
  ready_classic:'15 moves. Chain groups of 4+ to build your combo! 7+ = 💣, 10+ = ⚡',ready_rush:'Ready? Your first tap starts the 60 seconds! A 7+ group = +3 sec, 10+ = +5.',ready_zen:'Play at your own pace. No clock, no move limit.',ready_puzzle:'Check the target above. Finish before your moves run out. Drag 💣 🔫 🎯 🌈 from below to use them.',
- single:'That block is alone. Find a group of 2+.',end:'Round complete!',footer:'Offline play · No login · No ads<br>Your best score stays in this browser.<br>Pop Raja v16',
+ single:'That block is alone. Find a group of 2+.',end:'Round complete!',footer:'Offline play · No login · No ads<br>Your best score stays in this browser.<br>Pop Raja v17',
  copy:'Link copied. Send it to a friend!',manual:'Copy and send this link:',challenge:'Same board for your friend. Can they beat you?',today:'Daily challenge (same board for everyone)',
  hintmsg:'Try the group with the white outline.',plus:'points',finish:'Want another round? Tap New game.',combo:'COMBO',lvl:'Level',newbest:'New best! 🎉',lvlup:'Level up!',
  dailydone:'Daily challenge done',streak:'day streak',bigg:'Big group',pu:'Power-ups',allstars:'Perfect! 3 stars',
@@ -312,7 +312,7 @@ function shotFx(kind,cells){if(R())return;const rs=cells.map(c=>$('board').child
   const b=fx('beam',`left:${l}px;top:${y-7}px;width:${rt-l}px;height:14px`);done(b.animate([{transform:'scaleX(0)',opacity:1},{transform:'scaleX(1)',opacity:1,offset:.3},{transform:'scaleX(1)',opacity:0}],{duration:420,easing:'ease-out'}),b);
   const g=fx('beam glow',`left:${l}px;top:${y-22}px;width:${rt-l}px;height:44px`);done(g.animate([{opacity:.0},{opacity:.7,offset:.3},{opacity:0}],{duration:420}),g)}
  else{const r=rs[0],x=r.left+r.width/2,y=r.top+r.height/2;const a=fx('xhair',`left:${x-34}px;top:${y-34}px;width:68px;height:68px`);done(a.animate([{transform:'scale(2.6) rotate(90deg)',opacity:0},{transform:'scale(1) rotate(0)',opacity:1,offset:.55},{transform:'scale(.8)',opacity:0}],{duration:460,easing:'ease-out'}),a)}}
-function sparkleBurst(cx,cy,big,rects){if(lowFx||R()||document.hidden)return;const cols=['#ffffff','#dfe8ff','#ffe9a3','#bfe6ff'],n=Math.min(14,6+Math.round(big*8));for(let i=0;i<n;i++){const sz=8+Math.random()*12,a=Math.random()*6.283,d=50+Math.random()*(110+big*90),o=rects&&rects.length?rects[i%rects.length].r:null,sx=o?o.left+o.width/2:cx,sy=o?o.top+o.height/2:cy,e=fx('fx sparkle',`left:${sx-sz/2}px;top:${sy-sz/2}px;width:${sz}px;height:${sz}px;--sk:${cols[i%4]}`);done(e.animate([{transform:'translate(0,0) scale(.2) rotate(0)',opacity:0},{transform:`translate(${Math.cos(a)*d*.5}px,${Math.sin(a)*d*.5}px) scale(1.1) rotate(90deg)`,opacity:1,offset:.3},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d+30}px) scale(.1) rotate(220deg)`,opacity:0}],{duration:550+Math.random()*500,delay:Math.random()*120,easing:'ease-out',fill:'backwards'}),e)}}
+function sparkleBurst(cx,cy,big,rects){if(lowFx||R()||document.hidden)return;const cols=['#ffffff','#dfe8ff','#ffe9a3','#bfe6ff'],n=Math.min(26,12+Math.round(big*14));for(let i=0;i<n;i++){const sz=14+Math.random()*18,a=Math.random()*6.283,d=60+Math.random()*(130+big*110),o=rects&&rects.length?rects[i%rects.length].r:null,sx=o?o.left+o.width/2:cx,sy=o?o.top+o.height/2:cy,e=fx('fx sparkle',`left:${sx-sz/2}px;top:${sy-sz/2}px;width:${sz}px;height:${sz}px;--sk:${cols[i%4]}`);done(e.animate([{transform:'translate(0,0) scale(.2) rotate(0)',opacity:0},{transform:`translate(${Math.cos(a)*d*.5}px,${Math.sin(a)*d*.5}px) scale(1.1) rotate(90deg)`,opacity:1,offset:.3},{transform:`translate(${Math.cos(a)*d}px,${Math.sin(a)*d+30}px) scale(.1) rotate(220deg)`,opacity:0}],{duration:550+Math.random()*500,delay:Math.random()*120,easing:'ease-out',fill:'backwards'}),e)}}
 function blast(cells,vals,mx,n,kind,label,pow){
  if(R())return;const root=$('board'),rects=cells.map((c,j)=>({c,v:vals[j],r:root.children[c].getBoundingClientRect()}));
  const cx=rects.reduce((s,o)=>s+o.r.left+o.r.width/2,0)/rects.length,cy=rects.reduce((s,o)=>s+o.r.top+o.r.height/2,0)/rects.length;
@@ -564,7 +564,7 @@ const baseSfx=sfx;sfx=function(k,n,cb){if(k!=='zap'&&k!=='snipe')return baseSfx(
  const seed=raw&&/^\d{1,10}$/.test(raw)?Number(raw):randomSeed();
  if(mm==='p')start('puzzle',{lv:lv>=1&&lv<=NL?lv:nextLevel()});else if(mm==='r')start('rush',{seed});else if(mm==='z')start('zen',{seed});else if(raw)start('classic',{seed});else start('puzzle',{lv:nextLevel()});
  if(!ls('tp5-tut',''))tutorial()}
-const VERSION='16';
+const VERSION='17';
 async function checkUpdate(){if(!navigator.onLine)return;try{const r=await fetch(location.pathname+'?_v='+Date.now(),{cache:'no-store'});if(!r.ok)return;const m=(await r.text()).match(/const VERSION='(\d+)'/);if(m&&m[1]!==VERSION){updateVersion=m[1];$('install').textContent=te?'కొత్త వెర్షన్ ↻':'Update ready ↻';$('install').onclick=()=>location.reload();if(!busy&&G&&G.taps===0&&!G.over&&!modalOpen&&!sessionStorage.getItem('tp-reloaded-'+m[1])){sessionStorage.setItem('tp-reloaded-'+m[1],'1');const u=new URL(location.href);u.searchParams.set('v',m[1]);location.replace(u.href)}}}catch{}}
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).then(r=>{r.update().catch(()=>{});}).catch(()=>{});}
 checkUpdate();setInterval(checkUpdate,120000);window.addEventListener('online',checkUpdate);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});
