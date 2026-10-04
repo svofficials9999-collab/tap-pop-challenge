@@ -242,7 +242,7 @@ const text={te:{
  share:'ఫ్రెండ్‌కు ఛాలెంజ్ ↗',hint:'హింట్',again:'కొత్త గేమ్',retry:'మళ్లీ ప్రయత్నించు',daily:'📅 ఈ రోజు ఛాలెంజ్',next:'తదుపరి',nextlvl:'తర్వాతి లెవెల్ ▶',
  undo:'↶ వెనక్కి',shuf:'🔀 షఫుల్',burst:'🌈 బర్స్ట్',levels:'🧩 లెవెల్స్',prog:'🏅 నా ప్రోగ్రెస్',help:'?',
  ready_classic:'15 moves. 4+ గ్రూప్స్ వరుసగా కొట్టి కాంబో పెంచండి! 7+ = 💣, 10+ = ⚡',ready_rush:'రెడీ? మొదటి ట్యాప్‌తో 60 సెకన్లు మొదలు! 7+ గ్రూప్ = +3 సెకన్లు, 10+ = +5.',ready_zen:'ప్రశాంతంగా ఆడండి. టైమ్ లేదు, moves లెక్క లేదు.',ready_puzzle:'పైన టార్గెట్ చూడండి. moves అయిపోయేలోపు పూర్తి చేయండి. కింద ఉన్న 💣 🔫 🎯 🌈 ని డ్రాగ్ చేసి వాడండి.',
- single:'ఒంటరి బ్లాక్ కాదు. 2+ గ్రూప్ ఎంచుకోండి.',end:'గేమ్ పూర్తయింది!',footer:'ఆఫ్‌లైన్ ఆట · Login లేదు · Ads లేవు<br>మీ స్కోర్ ఈ browserలో మాత్రమే సేవ్ అవుతుంది.<br>Pop Raja v18',
+ single:'ఒంటరి బ్లాక్ కాదు. 2+ గ్రూప్ ఎంచుకోండి.',end:'గేమ్ పూర్తయింది!',footer:'ఆఫ్‌లైన్ ఆట · Login లేదు · Ads లేవు<br>మీ స్కోర్ ఈ browserలో మాత్రమే సేవ్ అవుతుంది.<br>Pop Raja v19',
  copy:'లింక్ కాపీ అయింది. ఫ్రెండ్‌కు పంపండి!',manual:'ఈ లింక్ కాపీ చేసి పంపండి:',challenge:'అందరికీ ఇదే బోర్డ్. మీ స్కోర్ దాటమని చెప్పండి!',today:'ఈ రోజు ఛాలెంజ్ (అందరికీ ఒకే బోర్డ్)',
  hintmsg:'తెల్ల గీత ఉన్న గ్రూప్ చూడండి.',plus:'పాయింట్లు',finish:'మళ్లీ ఆడాలా? కొత్త గేమ్ నొక్కండి.',combo:'కాంబో',lvl:'లెవెల్',newbest:'కొత్త బెస్ట్! 🎉',lvlup:'లెవెల్ అప్!',
  dailydone:'ఈ రోజు ఛాలెంజ్ పూర్తి',streak:'రోజుల స్ట్రీక్',bigg:'పెద్ద గ్రూప్',pu:'పవర్-అప్స్',allstars:'అద్భుతం! 3 స్టార్స్',
@@ -264,7 +264,7 @@ en:{
  share:'Challenge a friend ↗',hint:'Hint',again:'New game',retry:'Retry',daily:'📅 Daily challenge',next:'Next',nextlvl:'Next level ▶',
  undo:'↶ Undo',shuf:'🔀 Shuffle',burst:'🌈 Burst',levels:'🧩 Levels',prog:'🏅 My progress',help:'?',
  ready_classic:'15 moves. Chain groups of 4+ to build your combo! 7+ = 💣, 10+ = ⚡',ready_rush:'Ready? Your first tap starts the 60 seconds! A 7+ group = +3 sec, 10+ = +5.',ready_zen:'Play at your own pace. No clock, no move limit.',ready_puzzle:'Check the target above. Finish before your moves run out. Drag 💣 🔫 🎯 🌈 from below to use them.',
- single:'That block is alone. Find a group of 2+.',end:'Round complete!',footer:'Offline play · No login · No ads<br>Your best score stays in this browser.<br>Pop Raja v18',
+ single:'That block is alone. Find a group of 2+.',end:'Round complete!',footer:'Offline play · No login · No ads<br>Your best score stays in this browser.<br>Pop Raja v19',
  copy:'Link copied. Send it to a friend!',manual:'Copy and send this link:',challenge:'Same board for your friend. Can they beat you?',today:'Daily challenge (same board for everyone)',
  hintmsg:'Try the group with the white outline.',plus:'points',finish:'Want another round? Tap New game.',combo:'COMBO',lvl:'Level',newbest:'New best! 🎉',lvlup:'Level up!',
  dailydone:'Daily challenge done',streak:'day streak',bigg:'Big group',pu:'Power-ups',allstars:'Perfect! 3 stars',
@@ -576,7 +576,37 @@ const baseSfx=sfx;sfx=function(k,n,cb){if(k!=='zap'&&k!=='snipe')return baseSfx(
  const seed=raw&&/^\d{1,10}$/.test(raw)?Number(raw):randomSeed();
  if(mm==='p')start('puzzle',{lv:lv>=1&&lv<=NL?lv:nextLevel()});else if(mm==='r')start('rush',{seed});else if(mm==='z')start('zen',{seed});else if(raw)start('classic',{seed});else start('puzzle',{lv:nextLevel()});
  if(!ls('tp5-tut',''))tutorial()}
-const VERSION='18';
+/* v19: Back button steps back screen by screen (History API). Additive. */
+(()=>{
+let mPushed=false,ignore=0,forceLeave=false,navReplace=false;
+const rawClose=closeModal,rawOpen=openModal,rawSimple=simpleModal,rawGo=go;
+const cur=()=>G?{pr:'g',mode:G.mode,o:G.mode==='puzzle'?{lv:G.lv}:{seed:G.seed}}:{pr:'g'};
+const prog=()=>!!(G&&!G.over&&G.taps>0);
+const urlFor=(mode,o)=>{const u=new URL(location.href);u.search='';if(mode==='puzzle'){u.searchParams.set('m','p');u.searchParams.set('lv',o.lv)}else{if(mode!=='classic')u.searchParams.set('m',mode==='rush'?'r':'z');u.searchParams.set('seed',o.seed)}return u};
+const pushM=()=>{if(!mPushed){try{history.pushState({pr:'m'},'',location.href);mPushed=true}catch{}}};
+openModal=function(h){rawOpen(h);pushM()};
+simpleModal=function(h){rawSimple(h);pushM()};
+closeModal=function(){const was=mPushed;rawClose();if(was){mPushed=false;ignore++;try{history.back()}catch{ignore--}}};
+go=function(mode,o){const u=urlFor(mode,o);try{if(navReplace)history.replaceState({pr:'g',mode,o},'',u);else history.pushState({pr:'g',mode,o},'',u)}catch{}start(mode,o)};
+['again','nextlvl'].forEach(id=>{const b=$(id),f=b.onclick;b.onclick=function(e){navReplace=true;try{return f.call(this,e)}finally{navReplace=false}}});
+function pause(){const te_=te;openModal('<h2>'+(te_?'గేమ్ మధ్యలో ఉంది':'Game in progress')+'</h2><p>'+(te_?'వెనక్కి వెళ్తే ఈ రౌండ్ పోతుంది.':'Going back will end this round.')+'</p><button class="primary wide" id="bkstay">'+(te_?'ఆట కొనసాగించు ▶':'Keep playing ▶')+'</button><button class="secondary wide" id="bkleave">'+(te_?'వెనక్కి వెళ్ళు':'Go back')+'</button>');
+$('bkstay').onclick=closeModal;
+$('bkleave').onclick=()=>{mPushed=false;rawClose();forceLeave=true;history.go(-2)}}
+window.addEventListener('popstate',e=>{
+ if(ignore>0){ignore--;return}
+ if(mPushed){mPushed=false;rawClose();return}
+ const s=e.state||{};
+ if(!forceLeave&&prog()){try{history.pushState(cur(),'',location.href)}catch{};pause();return}
+ forceLeave=false;
+ if(s.pr==='exit'||!s.pr){history.back();return}
+ if(s.pr==='g'&&s.mode&&!(G&&G.mode===s.mode&&(s.mode==='puzzle'?G.lv===s.o.lv:G.seed===s.o.seed)))start(s.mode,s.o);
+});
+try{
+ const c=cur();history.replaceState({pr:'exit'},'',location.href);history.pushState(c,'',location.href);
+ if(modalOpen)pushM();
+}catch{}
+})();
+const VERSION='19';
 async function checkUpdate(){if(!navigator.onLine)return;try{const r=await fetch(location.pathname+'?_v='+Date.now(),{cache:'no-store'});if(!r.ok)return;const m=(await r.text()).match(/const VERSION='(\d+)'/);if(m&&m[1]!==VERSION){updateVersion=m[1];$('install').textContent=te?'కొత్త వెర్షన్ ↻':'Update ready ↻';$('install').onclick=()=>location.reload();if(!busy&&G&&G.taps===0&&!G.over&&!modalOpen&&!sessionStorage.getItem('tp-reloaded-'+m[1])){sessionStorage.setItem('tp-reloaded-'+m[1],'1');const u=new URL(location.href);u.searchParams.set('v',m[1]);location.replace(u.href)}}}catch{}}
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).then(r=>{r.update().catch(()=>{});}).catch(()=>{});}
 checkUpdate();setInterval(checkUpdate,120000);window.addEventListener('online',checkUpdate);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});
