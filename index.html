@@ -1,4 +1,4 @@
-<!doctype html><html lang="te"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="theme-color" content="#111429"><meta name="description" content="Tap matching blocks. 15 moves. One friendly challenge. తెలుగు ట్యాప్ పాప్ గేమ్."><title>Tap Pop Challenge | ట్యాప్ పాప్</title><style>
+<!doctype html><html lang="te"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Cache-Control" content="no-cache, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta name="theme-color" content="#111429"><meta name="description" content="Tap matching blocks. 15 moves. One friendly challenge. 4 modes. తెలుగు ట్యాప్ పాప్ గేమ్."><title>Tap Pop Challenge | ట్యాప్ పాప్</title><style>
 *{box-sizing:border-box}body{margin:0;background:#0c1022;color:#f4f5ff;font-family:system-ui,-apple-system,sans-serif;min-height:100svh;background-image:radial-gradient(ellipse at 50% 0,#30365b 0,transparent 65%)}main{max-width:450px;margin:auto;padding:20px 16px 24px}header{display:flex;justify-content:space-between;align-items:center}.eyebrow{font-size:11px;letter-spacing:2px;color:#aeb5d9;font-weight:700}h1{font-size:28px;line-height:1.1;margin:7px 0}h1 span{color:#aff7d2}.hbtns{display:flex;gap:8px}.lang{border:1px solid #505a80;background:transparent;color:#fff;border-radius:12px;padding:9px;font-weight:700}p{color:#bbc3e0;font-size:14px;line-height:1.6;margin:12px 0}.stats{display:flex;gap:8px;margin:17px 0 12px}.stat{flex:1;background:#1d2440;border:1px solid #343c5a;border-radius:15px;padding:10px 12px}.stat small{display:block;font-size:11px;color:#bec6e3}.stat strong{display:block;font-size:25px;margin-top:2px}#status{min-height:42px;color:#aff7d2;font-size:14px;font-weight:600;line-height:1.5}#board{position:relative;overflow:hidden;display:grid;grid-template-columns:repeat(6,1fr);gap:7px;padding:12px;background:#080d1c;border:1px solid #38435e;border-radius:22px;aspect-ratio:1}.tile{border:3px solid #ffd76a;min-width:0;width:100%;aspect-ratio:1;border-radius:50%;font-size:24px;font-weight:800;color:#162139;box-shadow:inset 0 -5px #0003,inset 0 3px #fff8,0 2px 5px #0006;background-image:radial-gradient(circle at 32% 28%,#fff9,#fff0 55%);cursor:pointer;touch-action:manipulation;transition:transform .12s,filter .12s}.tile:active{transform:scale(.9)}.tile:focus-visible{outline:3px solid white;outline-offset:2px}.c0{background:#ffabbb}.c1{background:#83c9ff}.c2{background:#ffe392}.c3{background:#92edbd}.empty{visibility:hidden}.hint{outline:3px solid #fff;filter:brightness(1.18)}.actions{display:flex;gap:8px;margin-top:14px}button{font-family:inherit;cursor:pointer}button:disabled{cursor:default}.primary,.secondary{border:0;border-radius:14px;padding:13px 8px;font-size:14px;font-weight:750;min-height:48px}.primary{background:#aff7d2;color:#112638;flex:1.4}.secondary{background:#293451;color:white;flex:1}footer{text-align:center;color:#858fab;font-size:11px;line-height:1.7;margin-top:17px}#summary{display:none;padding:12px 15px;border:1px solid #aff7d266;border-radius:14px;background:#16342e;margin-top:12px;font-size:14px;line-height:1.6}#shareout{display:none;word-break:break-all;user-select:all;background:#1d2440;color:#fff;padding:10px;border-radius:12px;font-size:12px}.badge{font-size:12px;color:#d4dcf7;margin-top:8px} @media(max-width:350px){main{padding:14px 10px}.tile{font-size:21px}#board{gap:5px;padding:9px}h1{font-size:25px}} @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 body:before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 20%,#27dafa12,transparent 50%),radial-gradient(ellipse at 80% 75%,#a15bff16,transparent 50%);animation:aurora 8s ease-in-out infinite alternate;z-index:-1}
@@ -15,12 +15,181 @@ body:before{content:'';position:fixed;inset:0;pointer-events:none;background:rad
 .chips{display:flex;gap:8px;margin:0 0 10px;align-items:center}.chip{background:#1d2440;border:1px solid #343c5a;border-radius:999px;padding:5px 11px;font-size:12px;font-weight:700;color:#d4dcf7}.chip b{color:#ffd76a}#combo{color:#ff9a5c;border-color:#ff9a5c88;opacity:.35}#combo.on{opacity:1;background:#3a2315}
 #goal{margin:2px 0 12px}#bar{position:relative;height:12px;border-radius:9px;background:#1d2440;border:1px solid #343c5a;overflow:visible}#fill{height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,#ffd76a,#ff9a5c);transition:width .35s}.mk{position:absolute;top:-6px;font-size:14px;transform:translateX(-50%);filter:grayscale(1) opacity(.55)}.mk.on{filter:none}#goaltxt{display:flex;justify-content:space-between;font-size:12px;color:#bec6e3;margin-top:9px}
 .stars{font-size:26px;letter-spacing:4px;color:#ffd76a}#summary b{color:#ffd76a}.row2{margin-top:8px}
-</style></head><body><main id="app"><header><div><div class="eyebrow" id="eyebrow">15 MOVES · ONE CHALLENGE</div><h1>Tap <span>Pop</span> ✦</h1></div><div class="hbtns"><button class="lang" id="snd" aria-label="Sound" aria-pressed="true">🔊</button><button class="lang" id="lang" aria-label="Change language">English</button></div></header><p id="rules"></p><div class="stats"><div class="stat"><small id="scorelabel"></small><strong id="score">0</strong></div><div class="stat"><small id="moveslabel"></small><strong id="moves">15</strong></div><div class="stat"><small id="bestlabel"></small><strong id="best">0</strong></div></div><div id="goal"><div id="bar"><div id="fill"></div><span class="mk" id="m1">★</span><span class="mk" id="m2">★</span><span class="mk" id="m3">★</span></div><div id="goaltxt"><span id="goalnext"></span><span id="lvl"></span></div></div><div class="chips"><span class="chip" id="combo"></span><span class="chip" id="pu"></span></div><div id="status" role="status" aria-live="polite"></div><div id="board" aria-label="Puzzle board"></div><div id="summary" role="status"></div><div class="actions"><button class="primary" id="share"></button><button class="secondary" id="hint"></button><button class="secondary" id="again"></button></div><div class="actions row2"><button class="secondary" id="daily"></button></div><div class="badge" id="challenge"></div><p id="shareout"></p><footer id="footer"></footer></main><div id="fxl" aria-hidden="true"></div><script>
+
+.modes{display:flex;gap:6px;margin:14px 0 2px}.modes button{flex:1;border:1px solid #38435e;background:#1d2440;color:#d4dcf7;border-radius:12px;padding:10px 2px;font-size:13px;font-weight:750;min-height:44px}.modes button.on{background:#aff7d2;color:#112638;border-color:#aff7d2}.modes button:disabled{opacity:.6}
+.dot{display:inline-block;width:1.45em;height:1.45em;line-height:1.45em;border-radius:50%;text-align:center;color:#162139;font-size:12px;vertical-align:middle;border:2px solid #ffd76a}
+.boosts{display:flex;gap:8px;margin-top:10px}.boosts button{flex:1;border:1px solid #38435e;background:#1d2440;color:#fff;border-radius:12px;padding:10px 4px;font-size:13px;font-weight:700;min-height:46px}.boosts button:disabled{opacity:.4}.boosts button.armed{background:#6a3dff;border-color:#fff}
+#board.armed{box-shadow:0 0 0 3px #b9a0ff,0 0 30px #b9a0ff88}
+.stat.urgent strong{color:#ff7d7d;animation:pulse 1s ease-in-out infinite}
+.tinyrow{display:flex;gap:8px;margin-top:8px}.tinyrow button{flex:1;border:1px solid #38435e;background:#161c34;color:#d4dcf7;border-radius:12px;padding:10px 4px;font-size:12.5px;font-weight:700;min-height:44px}
+#toast{position:fixed;left:50%;top:14px;transform:translate(-50%,-90px);background:#ffd76a;color:#2b2000;padding:10px 16px;border-radius:14px;font-weight:800;font-size:14px;z-index:90;transition:transform .3s;max-width:90vw;text-align:center}#toast.on{transform:translate(-50%,0)}
+#modal{display:none;position:fixed;inset:0;background:#05081acc;z-index:80;align-items:center;justify-content:center;padding:16px}#modal.on{display:flex}#mbody{background:#161c34;border:1px solid #38435e;border-radius:20px;padding:18px;max-width:420px;width:100%;max-height:88svh;overflow:auto}
+#mbody h2{margin:0 0 10px;font-size:20px}#mbody h3{margin:14px 0 6px;font-size:13px;color:#aeb5d9}.wide{width:100%;margin-top:12px}.tut{padding-left:20px;margin:0;color:#d4dcf7;font-size:14px;line-height:1.6}.tut li{margin:7px 0}.dim{color:#858fab;font-size:13px;margin:4px 0}
+.lgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.lv{border:1px solid #38435e;background:#1d2440;color:#fff;border-radius:12px;padding:8px 2px;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center}.lv b{font-size:18px}.lv span{font-size:11px;color:#ffd76a}.lv.cur{border-color:#aff7d2}.lv:disabled{opacity:.4}
+.mast small{color:#bec6e3}.mbar{height:10px;background:#1d2440;border-radius:8px;margin:8px 0;overflow:hidden}.mbar i{display:block;height:100%;background:linear-gradient(90deg,#aff7d2,#ffd76a)}
+.lb{margin:0;padding-left:22px;font-size:14px;color:#d4dcf7}.lb b{color:#ffd76a}.lb small{color:#858fab}.bgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.bd{background:#1d2440;border-radius:12px;padding:8px 4px;text-align:center;opacity:.35;filter:grayscale(1)}.bd.on{opacity:1;filter:none;border:1px solid #ffd76a66}.bd span{font-size:22px;display:block}.bd small{font-size:11px;color:#d4dcf7;line-height:1.3;display:block}
+#rules{display:none}.eyebrow{font-size:10px;letter-spacing:1.4px}h1{font-size:25px;margin:4px 0}.modes{margin:10px 0 0}.stats{margin:10px 0 8px}.stat{padding:7px 11px}.stat strong{font-size:22px}#status{min-height:40px;font-size:13.5px}#goal{margin:2px 0 8px}.chips{margin:0 0 6px}
+.c6{background:linear-gradient(145deg,#8b93a8,#4d556d)!important;border-color:#c8cfe4!important;color:#e8ecf8!important;border-radius:14px!important}.lgrid{grid-template-columns:repeat(5,1fr)}.lv b{font-size:15px}.modes button{font-size:12px}
+#goaltxt{align-items:flex-start;gap:8px;line-height:1.7}#goalnext small{opacity:.8}
+</style></head><body><main id="app"><header><div><div class="eyebrow" id="eyebrow"></div><h1>Tap <span>Pop</span> ✦</h1></div><div class="hbtns"><button class="lang" id="helpb" aria-label="How to play">?</button><button class="lang" id="snd" aria-label="Sound" aria-pressed="true">🔊</button><button class="lang" id="lang" aria-label="Change language">English</button></div></header>
+<div class="modes" role="group" aria-label="Mode"><button id="mode-classic"></button><button id="mode-rush"></button><button id="mode-zen"></button><button id="mode-puzzle"></button></div>
+<p id="rules"></p><div class="stats"><div class="stat"><small id="scorelabel"></small><strong id="score">0</strong></div><div class="stat"><small id="moveslabel"></small><strong id="moves">15</strong></div><div class="stat"><small id="bestlabel"></small><strong id="best">0</strong></div></div>
+<div id="goal"><div id="bar"><div id="fill"></div><span class="mk" id="m1">★</span><span class="mk" id="m2">★</span><span class="mk" id="m3">★</span></div><div id="goaltxt"><span id="goalnext"></span><span id="lvl"></span></div></div>
+<div class="chips"><span class="chip" id="combo"></span><span class="chip" id="pu"></span></div><div id="status" role="status" aria-live="polite"></div><div id="board" aria-label="Puzzle board"></div><div id="summary" role="status"></div>
+<div class="boosts"><button id="undo"></button><button id="shuf"></button><button id="burst"></button></div>
+<div class="actions"><button class="primary" id="share"></button><button class="secondary" id="hint"></button><button class="secondary" id="again"></button></div>
+<div class="tinyrow"><button id="daily"></button><button id="levels"></button><button id="nextlvl" style="display:none"></button><button id="prog"></button></div>
+<div class="badge" id="challenge"></div><p id="shareout"></p><footer id="footer"></footer></main><div id="fxl" aria-hidden="true"></div><div id="toast" role="status"></div><div id="modal" role="dialog" aria-modal="true"><div id="mbody"></div></div><script>
 'use strict';
-const SV=2,STAR=[1500,3000,5000];
-let te=true,score=0,moves=15,over=false,board=[],seed=0,rng,oldBest=0,hints=0,busy=false,roundId=0,combo=0,bestCombo=0,maxGroup=0,pus=0;const symbols=['●','◆','★','✿','💣','⚡'];const $=id=>document.getElementById(id);
-const text={te:{rules:'పక్కపక్కన ఉన్న ఒకే రంగు బ్లాక్స్ (2+) ట్యాప్ చేయండి. పెద్ద గ్రూప్ = భారీ బ్లాస్ట్ + ఎక్కువ స్కోర్! 7+ = 💣 బాంబ్, 10+ = ⚡ క్రాస్ బ్లాస్ట్.',scorelabel:'స్కోర్',moveslabel:'మిగిలిన moves',bestlabel:'మీ బెస్ట్',share:'ఫ్రెండ్‌కు ఛాలెంజ్ ↗',hint:'హింట్',again:'కొత్త గేమ్',daily:'📅 ఈ రోజు ఛాలెంజ్',ready:'15 moves. 4+ గ్రూప్స్ వరుసగా కొట్టి కాంబో పెంచండి!',single:'ఒంటరి బ్లాక్ కాదు. 2+ గ్రూప్ ఎంచుకోండి.',end:'గేమ్ పూర్తయింది!',footer:'Install లేదు · Login లేదు · Ads లేవు<br>మీ స్కోర్ ఈ browserలో మాత్రమే సేవ్ అవుతుంది.',copy:'లింక్ కాపీ అయింది. ఫ్రెండ్‌కు పంపండి!',manual:'ఈ లింక్ కాపీ చేసి పంపండి:',challenge:'అందరికీ ఇదే బోర్డ్. మీ స్కోర్ దాటమని చెప్పండి! (స్కోరింగ్ v2)',hintmsg:'తెల్ల గీత ఉన్న గ్రూప్ చూడండి.',plus:'పాయింట్లు',finish:'మళ్లీ ఆడాలా? కొత్త గేమ్ నొక్కండి.',combo:'కాంబో',next:'తదుపరి',lvl:'లెవెల్',stars:'స్టార్స్',newbest:'కొత్త బెస్ట్! 🎉',lvlup:'లెవెల్ అప్!',dailydone:'ఈ రోజు ఛాలెంజ్ పూర్తి',streak:'రోజుల స్ట్రీక్',bigg:'పెద్ద గ్రూప్',sweep:'మిగిలిన moves బోనస్',pu:'పవర్-అప్స్',eb:'15 MOVES · ఒక ఛాలెంజ్',today:'ఈ రోజు ఛాలెంజ్ (అందరికీ ఒకే బోర్డ్)',allstars:'అద్భుతం! 3 స్టార్స్'},en:{rules:'Tap connected groups of 2+ matching blocks. Bigger group = bigger blast + more points! 7+ makes a 💣 bomb, 10+ makes a ⚡ cross blast.',scorelabel:'SCORE',moveslabel:'MOVES LEFT',bestlabel:'YOUR BEST',share:'Challenge a friend ↗',hint:'Hint',again:'New game',daily:'📅 Daily challenge',ready:'15 moves. Chain groups of 4+ to build your combo!',single:'That block is alone. Find a group of 2+.',end:'Round complete!',footer:'No install · No login · No ads<br>Your best score stays in this browser.',copy:'Link copied. Send it to a friend!',manual:'Copy and send this link:',challenge:'Same board for your friend. Can they beat you? (Scoring v2)',hintmsg:'Try the group with the white outline.',plus:'points',finish:'Want another round? Tap New game.',combo:'COMBO',next:'Next',lvl:'Level',stars:'stars',newbest:'New best! 🎉',lvlup:'Level up!',dailydone:'Daily challenge done',streak:'day streak',bigg:'Big group',sweep:'Moves-left bonus',pu:'Power-ups',eb:'15 MOVES · ONE CHALLENGE',today:'Daily challenge (same board for everyone)',allstars:'Perfect! 3 stars'}};
-const PRAISE=[[20,'LEGENDARY!'],[12,'EPIC!'],[8,'AWESOME!'],[5,'GREAT!'],[4,'NICE!']];
+//ENGINE_START
+const N=6,SV_CLASSIC=2,SV_NEW=3;
+const STAR={classic:[1500,3000,5000],rush:[4000,7500,12000]};
+const LEVELS=[{"g":[{"t":"clear","c":3,"n":13}],"moves":14},{"g":[{"t":"score","n":901}],"moves":8},{"g":[{"t":"combo","n":3}],"moves":14},{"g":[{"t":"clear","c":3,"n":19}],"moves":14},{"g":[{"t":"power","n":1}],"moves":16},{"g":[{"t":"score","n":1264}],"moves":8},{"g":[{"t":"big","n":7}],"moves":16},{"g":[{"t":"clear","c":1,"n":12}],"moves":10},{"g":[{"t":"combo","n":4}],"moves":13},{"g":[{"t":"clear","c":3,"n":15},{"t":"score","n":1204}],"moves":15},{"g":[{"t":"clear","c":3,"n":16}],"moves":14},{"g":[{"t":"power","n":2}],"moves":8},{"g":[{"t":"stone","n":6}],"stones":6,"moves":12},{"g":[{"t":"score","n":1731}],"moves":8},{"g":[{"t":"clear","c":0,"n":10},{"t":"clear","c":1,"n":13}],"moves":13},{"g":[{"t":"stone","n":7}],"stones":7,"moves":13},{"g":[{"t":"combo","n":4}],"moves":14},{"g":[{"t":"big","n":7}],"moves":14},{"g":[{"t":"stone","n":7},{"t":"score","n":1238}],"stones":7,"moves":10},{"g":[{"t":"stone","n":8},{"t":"score","n":2131}],"stones":8,"moves":16},{"g":[{"t":"score","n":2802}],"time":20},{"g":[{"t":"clear","c":2,"n":23}],"time":25},{"g":[{"t":"score","n":1954},{"t":"power","n":2}],"moves":9},{"g":[{"t":"stone","n":7},{"t":"clear","c":3,"n":17}],"stones":8,"moves":14},{"g":[{"t":"combo","n":6}],"time":40},{"g":[{"t":"big","n":7},{"t":"power","n":2}],"moves":14},{"g":[{"t":"stone","n":6}],"stones":6,"moves":9},{"g":[{"t":"clear","c":3,"n":13},{"t":"clear","c":0,"n":14}],"moves":15},{"g":[{"t":"stone","n":8},{"t":"combo","n":5}],"stones":9,"time":45},{"g":[{"t":"stone","n":6},{"t":"score","n":2610}],"stones":8,"time":25},{"g":[{"t":"clear","c":3,"n":16},{"t":"score","n":1763}],"moves":15},{"g":[{"t":"stone","n":5},{"t":"clear","c":0,"n":35}],"stones":6,"time":45},{"g":[{"t":"combo","n":4},{"t":"power","n":2}],"moves":9},{"g":[{"t":"stone","n":7},{"t":"big","n":9}],"stones":7,"moves":12},{"g":[{"t":"score","n":1897},{"t":"clear","c":0,"n":16}],"moves":13},{"g":[{"t":"stone","n":7},{"t":"power","n":3}],"stones":7,"time":30},{"g":[{"t":"big","n":8},{"t":"combo","n":3}],"moves":15},{"g":[{"t":"clear","c":0,"n":16},{"t":"clear","c":1,"n":23},{"t":"score","n":2189}],"moves":15},{"g":[{"t":"stone","n":5},{"t":"clear","c":2,"n":16}],"stones":7,"moves":12},{"g":[{"t":"stone","n":10},{"t":"score","n":3460},{"t":"clear","c":1,"n":25}],"stones":10,"time":35},{"g":[{"t":"clear","c":0,"n":20},{"t":"score","n":2178}],"moves":10},{"g":[{"t":"stone","n":7},{"t":"combo","n":7}],"stones":8,"moves":12},{"g":[{"t":"clear","c":0,"n":26},{"t":"clear","c":1,"n":21}],"time":35},{"g":[{"t":"stone","n":6},{"t":"big","n":8}],"stones":7,"moves":14},{"g":[{"t":"score","n":1271},{"t":"power","n":3},{"t":"clear","c":0,"n":18}],"moves":14},{"g":[{"t":"stone","n":10},{"t":"clear","c":2,"n":14}],"stones":10,"moves":14},{"g":[{"t":"combo","n":6},{"t":"big","n":9}],"time":40},{"g":[{"t":"stone","n":10},{"t":"power","n":1},{"t":"score","n":1085}],"stones":11,"moves":14},{"g":[{"t":"stone","n":8},{"t":"clear","c":3,"n":17},{"t":"score","n":3204}],"stones":8,"moves":13},{"g":[{"t":"stone","n":6},{"t":"clear","c":2,"n":15},{"t":"score","n":3716},{"t":"combo","n":6}],"stones":8,"time":55}];
+function levelSeed(l){return 7000+l*131}
+const isPow=v=>v===4||v===5;
+class RNG{constructor(s){this.s=s|0}
+ next(){let s=this.s;s=s+0x6D2B79F5|0;this.s=s;let v=Math.imul(s^s>>>15,1|s);v=v+Math.imul(v^v>>>7,61|v)^v;return((v^v>>>14)>>>0)/4294967296}}
+function groupOf(b,i){if(b[i]<0||b[i]>3)return[];const seen=new Set([i]),st=[i],v=b[i];while(st.length){const n=st.pop(),r=Math.floor(n/N),c=n%N;for(const [y,x] of [[r-1,c],[r+1,c],[r,c-1],[r,c+1]]){const k=y*N+x;if(y>=0&&y<N&&x>=0&&x<N&&b[k]===v&&!seen.has(k)){seen.add(k);st.push(k)}}}return[...seen]}
+function groupsOf(b){const seen=new Set(),out=[];for(let i=0;i<b.length;i++){if(seen.has(i))continue;const g=groupOf(b,i);g.forEach(k=>seen.add(k));if(g.length>1)out.push(g)}return out}
+function areaOf(b,i){const r=Math.floor(i/N),c=i%N,out=[];if(b[i]===4){for(let y=r-1;y<=r+1;y++)for(let x=c-1;x<=c+1;x++)if(y>=0&&y<N&&x>=0&&x<N)out.push(y*N+x)}else{for(let k=0;k<N;k++){out.push(r*N+k);if(k!==r)out.push(k*N+c)}}return out.filter(n=>b[n]>=0)}
+function colourCells(b,v){const o=[];for(let i=0;i<b.length;i++)if(b[i]===v)o.push(i);return o}
+function multOf(c){return Math.min(3,1+.25*(c-1))}
+function bonusOf(n){return n>=20?800:n>=12?300:n>=8?120:n>=5?40:0}
+function hasMove(b){return groupsOf(b).length>0||b.some(isPow)}
+function newGame(mode,o){
+ o=o||{};const lv=o.lv||1;let seed=(mode==='puzzle'?levelSeed(lv):(o.seed>>>0||1))>>>0||1;
+ const rng=new RNG(seed);let board=Array.from({length:36},()=>Math.floor(rng.next()*4));
+ if(mode==='classic'){if(!groupsOf(board).length)board[1]=board[0]}
+ else{let tries=0;while(groupsOf(board).length<3&&tries++<60)board=Array.from({length:36},()=>Math.floor(rng.next()*4));if(!groupsOf(board).length)board[1]=board[0]}
+ const goal=mode==='puzzle'?LEVELS[lv-1]:null;
+ if(goal&&goal.stones){const a=new RNG(seed^0x5bd1e995);const pos=[];for(let r=2;r<N;r++)for(let c=0;c<N;c++)pos.push(r*N+c);for(let i=pos.length-1;i>0;i--){const j=Math.floor(a.next()*(i+1));[pos[i],pos[j]]=[pos[j],pos[i]]}pos.slice(0,goal.stones).forEach(p=>board[p]=6)}
+ const timed=!!(goal&&goal.time);
+ return{mode,seed,lv,rng,board,score:0,moves:mode==='classic'?15:mode==='puzzle'?(goal.moves||0):0,limited:mode==='classic'||(mode==='puzzle'&&!timed),time:mode==='rush'?60:timed?goal.time:0,
+  over:false,won:false,combo:0,bestCombo:0,maxGroup:0,pus:0,taps:0,hints:0,shuffles:0,goal,
+  prog:{clear:[0,0,0,0],big:0,stone:0},burst:mode==='puzzle'?1:0,burstEarned:false,undoLeft:1,shufLeft:1,snap:null,timeBonusTotal:0,usedBoost:0}}
+function snapshot(G){return{board:G.board.slice(),score:G.score,moves:G.moves,combo:G.combo,bestCombo:G.bestCombo,maxGroup:G.maxGroup,pus:G.pus,taps:G.taps,shuffles:G.shuffles,prog:{clear:G.prog.clear.slice(),big:G.prog.big,stone:G.prog.stone},burst:G.burst,burstEarned:G.burstEarned,rs:G.rng.s,time:G.time,timeBonusTotal:G.timeBonusTotal}}
+function restore(G,s){G.board=s.board.slice();G.score=s.score;G.moves=s.moves;G.combo=s.combo;G.bestCombo=s.bestCombo;G.maxGroup=s.maxGroup;G.pus=s.pus;G.taps=s.taps;G.shuffles=s.shuffles;G.prog={clear:s.prog.clear.slice(),big:s.prog.big,stone:s.prog.stone};G.burst=s.burst;G.burstEarned=s.burstEarned;G.rng.s=s.rs;G.over=false;G.won=false}
+function reshuffle(G){
+ const a=new RNG(((G.seed*2654435761)^(G.taps*40503+G.shuffles*977+13))>>>0||1);G.shuffles++;
+ const vals=G.board.slice();let best=null,bestN=-1;
+ for(let t=0;t<40;t++){for(let i=vals.length-1;i>0;i--){const j=Math.floor(a.next()*(i+1));[vals[i],vals[j]]=[vals[j],vals[i]]}
+  const k=groupsOf(vals).length;if(k>bestN){bestN=k;best=vals.slice()}if(k>=3)break}
+ G.board=best;if(!hasMove(G.board)){const v=G.board;for(let i=1;i<36;i++){if(v[i]<4&&v[i-1]<4&&i%N!==0){v[i]=v[i-1];break}}}
+ return true}
+function subProg(G,g){switch(g.t){case'score':return[Math.min(G.score,g.n),g.n];case'clear':return[Math.min(G.prog.clear[g.c],g.n),g.n];case'power':return[Math.min(G.pus,g.n),g.n];case'combo':return[Math.min(G.bestCombo,g.n),g.n];case'big':return[Math.min(G.prog.big,g.n),g.n];case'stone':return[Math.min(G.prog.stone,g.n),g.n]}return[0,1]}
+function goalList(G){return G.goal?G.goal.g:[]}
+function goalProg(G){if(!G.goal)return null;const l=goalList(G).map(g=>subProg(G,g));return[l.reduce((a,p)=>a+p[0]/p[1],0)/l.length,1,l]}
+function goalDone(G){return !!G.goal&&goalList(G).every(g=>{const p=subProg(G,g);return p[0]>=p[1]})}
+function puzzleStars(G){if(!G.won)return 0;if(G.goal.time){const f=G.time/G.goal.time;return f>=.35?3:f>=.12?2:1}const lim=G.goal.moves;return G.moves>=Math.ceil(lim*.4)?3:G.moves>=Math.ceil(lim*.2)?2:1}
+function scoreStars(G){const th=STAR[G.mode];return th?th.filter(s=>G.score>=s).length:0}
+function cellsFor(G,i,kind){if(kind==='burst')return G.board[i]>=0&&G.board[i]<4?colourCells(G.board,G.board[i]):[];if(kind==='pw')return areaOf(G.board,i);return groupOf(G.board,i)}
+function kindAt(G,i,armed){return armed?'burst':isPow(G.board[i])?'pw':'grp'}
+// Applies one move. Returns null for an invalid tap. Mutates G.
+function applyMove(G,i,kind){
+ if(G.over)return null;const b=G.board;if(i<0||i>35||b[i]<0)return null;
+ const cells=cellsFor(G,i,kind);if(kind==='grp'&&cells.length<2)return null;if(!cells.length)return null;
+ G.usedBoost+=kind==='burst'?1:0;if(kind==='burst'){if(G.burst<1)return null;G.burst--}
+ const n=cells.length,pw=kind!=='grp',big=!pw&&n>=4;
+ const stoneCells=[];const inSet=new Set(cells);for(const c of cells){const r=Math.floor(c/N),cc=c%N;for(const [y,x] of [[r-1,cc],[r+1,cc],[r,cc-1],[r,cc+1]]){const k=y*N+x;if(y>=0&&y<N&&x>=0&&x<N&&b[k]===6&&!inSet.has(k)){inSet.add(k);stoneCells.push(k)}}}
+ const allCells=cells.concat(stoneCells),vals=allCells.map(c=>b[c]);const stoneN=vals.filter(v=>v===6).length;G.prog.stone+=stoneN;
+ G.combo=(big||pw)?G.combo+1:0;G.bestCombo=Math.max(G.bestCombo,G.combo);const mx=(big||pw)?multOf(G.combo):1;
+ const base=kind==='pw'?n*20+60:kind==='burst'?n*16+40:n*n*5,bonus=pw?0:bonusOf(n),gained=Math.round((base+bonus)*mx)+stoneN*40;
+ G.maxGroup=Math.max(G.maxGroup,n);if(!pw)G.prog.big=Math.max(G.prog.big,n);
+ vals.forEach(v=>{if(v>=0&&v<4)G.prog.clear[v]++});
+ const spawn=pw?0:n>=10?5:n>=7?4:0;if(spawn)G.pus++;
+ const timeBonus=G.mode==='rush'&&!pw?(n>=10?2:n>=7?1:0):0;G.timeBonusTotal+=timeBonus;
+ allCells.forEach(c=>b[c]=-1);if(spawn)b[i]=spawn;G.score+=gained;if(G.limited)G.moves--;G.taps++;
+ const origins=Array(36).fill(0);let spawnIdx=-1;
+ for(let c=0;c<N;c++){const col=[],from=[];for(let r=0;r<N;r++)if(b[r*N+c]>=0){col.push(b[r*N+c]);from.push(r)}
+  const missing=N-col.length;if(spawn&&c===i%N)spawnIdx=(missing+from.indexOf(Math.floor(i/N)))*N+c;while(col.length<N)col.unshift(Math.floor(G.rng.next()*4));
+  for(let r=0;r<N;r++){b[r*N+c]=col[r];origins[r*N+c]=r<missing?r-missing:from[r-missing]}}
+ let earnedBurst=false;if(G.combo>=3&&!G.burstEarned&&G.mode!=='puzzle'){G.burstEarned=true;G.burst++;earnedBurst=true}
+ let reshuffled=false;if(!hasMove(G.board)){reshuffled=reshuffle(G);origins.fill(0)}
+ if(G.mode==='puzzle'){if(goalDone(G)){G.over=true;G.won=true}else if(G.limited&&G.moves<=0){G.over=true}}
+ else if(G.mode==='classic'&&G.moves<=0)G.over=true;
+ return{cells:allCells,vals,n,kind,stoneN,gained,mx,spawn,spawnIdx,origins,reshuffled,earnedBurst,timeBonus}}
+// best group for hints and bots, goal-aware
+function bestMove(G){
+ const b=G.board;let best=-1,bs=-1;const seen=new Set();
+ for(let i=0;i<36;i++){if(isPow(b[i])){const s=100+areaOf(b,i).length;if(s>bs){bs=s;best=i}continue}
+  if(seen.has(i))continue;const g=groupOf(b,i);g.forEach(k=>seen.add(k));if(g.length<2)continue;let s=g.length;
+  for(const t of goalList(G)){if(t.t==='clear'&&b[i]===t.c)s+=50;if(t.t==='big')s+=g.length>=t.n?50:0;if(t.t==='power'&&g.length>=7)s+=40;if(t.t==='stone'){let adj=0;for(const c of g){const r=Math.floor(c/N),cc=c%N;for(const [y,x] of [[r-1,cc],[r+1,cc],[r,cc-1],[r,cc+1]])if(y>=0&&y<N&&x>=0&&x<N&&b[y*N+x]===6)adj++}s+=adj*12}}if(s>bs){bs=s;best=i}}
+ return best}
+//ENGINE_END
+
+const text={te:{
+ rules_classic:'పక్కపక్కన ఉన్న ఒకే రంగు బ్లాక్స్ (2+) ట్యాప్ చేయండి. పెద్ద గ్రూప్ = భారీ బ్లాస్ట్ + ఎక్కువ స్కోర్! 7+ = 💣 బాంబ్, 10+ = ⚡ క్రాస్ బ్లాస్ట్.',
+ rules_rush:'60 సెకన్లు! వేగంగా పెద్ద గ్రూప్స్ కొట్టండి. 7+ గ్రూప్ = +3 సెకన్లు, 10+ = +5 సెకన్లు. మొదటి ట్యాప్‌తో టైమర్ మొదలవుతుంది.',
+ rules_zen:'టైమ్ లేదు, moves లెక్క లేదు. ప్రశాంతంగా ఆడండి, కాంబోలు ప్రాక్టీస్ చేయండి. బోర్డ్ ఎప్పుడూ ఇరుక్కోదు.',
+ rules_puzzle:'ప్రతి లెవెల్‌కు ఒక టార్గెట్ ఉంది. moves అయిపోయేలోపు పూర్తి చేయండి. 🌈 బర్స్ట్ ఒకటి మీకు ఇవ్వబడింది.',
+ m_classic:'క్లాసిక్',m_rush:'రష్ 60s',m_zen:'జెన్',m_puzzle:'లెవెల్స్ ★50',m_stone:'రాళ్ళు పగలగొట్టండి',stonehit:'▣ రాయి: దాని పక్కన గ్రూప్ పేలిస్తే పగులుతుంది.',
+ scorelabel:'స్కోర్',moveslabel:'మిగిలిన moves',timelabel:'సమయం',popslabel:'పాప్స్',bestlabel:'మీ బెస్ట్',starslabel:'స్టార్స్',
+ share:'ఫ్రెండ్‌కు ఛాలెంజ్ ↗',hint:'హింట్',again:'కొత్త గేమ్',retry:'మళ్లీ ప్రయత్నించు',daily:'📅 ఈ రోజు ఛాలెంజ్',next:'తదుపరి',nextlvl:'తర్వాతి లెవెల్ ▶',
+ undo:'↶ వెనక్కి',shuf:'🔀 షఫుల్',burst:'🌈 బర్స్ట్',levels:'🧩 లెవెల్స్',prog:'🏅 నా ప్రోగ్రెస్',help:'?',
+ ready_classic:'15 moves. 4+ గ్రూప్స్ వరుసగా కొట్టి కాంబో పెంచండి! 7+ = 💣, 10+ = ⚡',ready_rush:'రెడీ? మొదటి ట్యాప్‌తో 60 సెకన్లు మొదలు! 7+ గ్రూప్ = +3 సెకన్లు, 10+ = +5.',ready_zen:'ప్రశాంతంగా ఆడండి. టైమ్ లేదు, moves లెక్క లేదు.',ready_puzzle:'పైన టార్గెట్ చూడండి. moves అయిపోయేలోపు పూర్తి చేయండి. 🌈 బర్స్ట్ ఒకటి ఉంది.',
+ single:'ఒంటరి బ్లాక్ కాదు. 2+ గ్రూప్ ఎంచుకోండి.',end:'గేమ్ పూర్తయింది!',footer:'Install లేదు · Login లేదు · Ads లేవు<br>మీ స్కోర్ ఈ browserలో మాత్రమే సేవ్ అవుతుంది.<br>Tap Pop v5',
+ copy:'లింక్ కాపీ అయింది. ఫ్రెండ్‌కు పంపండి!',manual:'ఈ లింక్ కాపీ చేసి పంపండి:',challenge:'అందరికీ ఇదే బోర్డ్. మీ స్కోర్ దాటమని చెప్పండి!',today:'ఈ రోజు ఛాలెంజ్ (అందరికీ ఒకే బోర్డ్)',
+ hintmsg:'తెల్ల గీత ఉన్న గ్రూప్ చూడండి.',plus:'పాయింట్లు',finish:'మళ్లీ ఆడాలా? కొత్త గేమ్ నొక్కండి.',combo:'కాంబో',lvl:'లెవెల్',newbest:'కొత్త బెస్ట్! 🎉',lvlup:'లెవెల్ అప్!',
+ dailydone:'ఈ రోజు ఛాలెంజ్ పూర్తి',streak:'రోజుల స్ట్రీక్',bigg:'పెద్ద గ్రూప్',pu:'పవర్-అప్స్',allstars:'అద్భుతం! 3 స్టార్స్',
+ burstask:'ఏ రంగు తీసేయాలో ఆ రంగు బ్లాక్ ట్యాప్ చేయండి. ఆ రంగు అన్నీ పేలతాయి.',burstcol:'పవర్ బ్లాక్ కాదు, రంగు బ్లాక్ ట్యాప్ చేయండి.',burstearn:'🌈 బర్స్ట్ సంపాదించారు!',
+ shuffled:'బోర్డ్ ఇరుక్కుంది, ఆటోమేటిక్‌గా షఫుల్ చేశాను 🔀',shufdone:'బోర్డ్ షఫుల్ అయింది 🔀',undone:'ఆ ట్యాప్ వెనక్కి తీసుకున్నాను ↶',
+ timeup:'టైమ్ అయిపోయింది!',tbonus:'సెకన్లు',taps:'ట్యాప్స్',tbtot:'బోనస్ టైమ్',rank:'టాప్ 5లో స్థానం',
+ won:'లెవెల్ పూర్తి! ✅',lost:'ఈసారి కాదు. మళ్లీ ప్రయత్నించండి 💪',tip:'చిట్కా: 🌈 బర్స్ట్, 🔀 షఫుల్, హింట్ వాడండి.',allcleared:'అన్ని లెవెల్స్ పూర్తి! 👑',
+ m_score:'పాయింట్లు సాధించండి',m_clear:'బ్లాక్స్ తీసేయండి',m_power:'పవర్-అప్ (💣/⚡) తయారు చేయండి',m_combo:'వరుసగా 4+ గ్రూప్స్ కొట్టండి',m_big:'ఒక్క ట్యాప్‌లో బ్లాక్స్ తీయండి',times:'సార్లు',
+ lb:'టాప్ 5 స్కోర్లు (ఈ ఫోన్‌లో)',none:'ఇంకా లేవు',badges:'బ్యాడ్జ్‌లు',mastery:'మాస్టరీ',xp:'XP',close:'సరే',
+ tut_t:'Tap Pop ఎలా ఆడాలి',tut1:'పక్కపక్కన ఉన్న ఒకే రంగు బ్లాక్స్ (2+) ట్యాప్ చేయండి, అవి పేలిపోతాయి.',tut2:'పెద్ద గ్రూప్ = ఎక్కువ స్కోర్. 7+ గ్రూప్ 💣 బాంబ్, 10+ గ్రూప్ ⚡ క్రాస్ బ్లాస్ట్ ఇస్తుంది. వాటిని ట్యాప్ చేస్తే చుట్టూ పేలుతుంది.',tut3:'వరుసగా 4+ గ్రూప్స్ కొడితే కాంబో ×పెరుగుతుంది. మధ్యలో చిన్న గ్రూప్ కొడితే కాంబో పోతుంది.',tut4:'సహాయం: ↶ ఒకసారి వెనక్కి, 🔀 ఒకసారి షఫుల్, 🌈 బర్స్ట్ (కాంబో ×3 కొడితే వస్తుంది).',tut5:'మోడ్స్: లెవెల్స్ (50 లెవెల్స్, ఒక్కొక్కటి కొత్త టార్గెట్), క్లాసిక్ (15 moves), రష్ (60 సెకన్లు), జెన్ (ఒత్తిడి లేదు).',tut_go:'ఆడదాం! ▶',
+ tip_first:'లెవెల్ 1: పైన టార్గెట్ చూడండి. ఎక్కువ బ్లాక్స్ ఉన్న గ్రూప్ ట్యాప్ చేయండి!',tip_stone:'కొత్తది: ▣ రాళ్ళు! రాయిని ట్యాప్ చేయలేరు. దాని పక్కన ఉన్న గ్రూప్ పేలిస్తే రాయి పగులుతుంది.',tip_time:'కొత్తది: ⏱ టైమ్ లెవెల్! moves లెక్క లేదు, సమయం లోపల టార్గెట్ కొట్టండి. మొదటి ట్యాప్‌తో టైమర్ మొదలు.',tip_multi:'కొత్తది: ఒకేసారి రెండు టార్గెట్లు! అన్నీ పూర్తి చేయాలి.',tip_boss:'👑 బాస్ లెవెల్! కఠినం. 🌈 బర్స్ట్, 🔀, ↶ వాడండి.',tip_combo:'కాంబో టార్గెట్: వరుసగా 4+ గ్రూప్స్ కొట్టండి, మధ్యలో చిన్న గ్రూప్ వద్దు.',tip_power:'పవర్-అప్ టార్గెట్: 7+ గ్రూప్ కొడితే 💣 వస్తుంది.',prog_now:'ఇప్పుడు',lvdone:'పూర్తయిన లెవెల్స్'},
+en:{
+ rules_classic:'Tap connected groups of 2+ matching blocks. Bigger group = bigger blast + more points! 7+ makes a 💣 bomb, 10+ makes a ⚡ cross blast.',
+ rules_rush:'60 seconds! Pop big groups fast. A 7+ group gives +3 seconds, 10+ gives +5. The clock starts on your first tap.',
+ rules_zen:'No clock, no move limit. Relax and practise combos. The board never gets stuck.',
+ rules_puzzle:'Every level has a target. Finish it before your moves run out. You get one 🌈 Burst to start.',
+ m_classic:'Classic',m_rush:'Rush 60s',m_zen:'Zen',m_puzzle:'Levels ★50',m_stone:'rocks to break',stonehit:'▣ Rock: pop a group next to it to crack it.',
+ scorelabel:'SCORE',moveslabel:'MOVES LEFT',timelabel:'TIME',popslabel:'POPS',bestlabel:'YOUR BEST',starslabel:'STARS',
+ share:'Challenge a friend ↗',hint:'Hint',again:'New game',retry:'Retry',daily:'📅 Daily challenge',next:'Next',nextlvl:'Next level ▶',
+ undo:'↶ Undo',shuf:'🔀 Shuffle',burst:'🌈 Burst',levels:'🧩 Levels',prog:'🏅 My progress',help:'?',
+ ready_classic:'15 moves. Chain groups of 4+ to build your combo! 7+ = 💣, 10+ = ⚡',ready_rush:'Ready? Your first tap starts the 60 seconds! A 7+ group = +3 sec, 10+ = +5.',ready_zen:'Play at your own pace. No clock, no move limit.',ready_puzzle:'Check the target above. Finish before your moves run out. You have one 🌈 Burst.',
+ single:'That block is alone. Find a group of 2+.',end:'Round complete!',footer:'No install · No login · No ads<br>Your best score stays in this browser.<br>Tap Pop v5',
+ copy:'Link copied. Send it to a friend!',manual:'Copy and send this link:',challenge:'Same board for your friend. Can they beat you?',today:'Daily challenge (same board for everyone)',
+ hintmsg:'Try the group with the white outline.',plus:'points',finish:'Want another round? Tap New game.',combo:'COMBO',lvl:'Level',newbest:'New best! 🎉',lvlup:'Level up!',
+ dailydone:'Daily challenge done',streak:'day streak',bigg:'Big group',pu:'Power-ups',allstars:'Perfect! 3 stars',
+ burstask:'Tap a block of the colour you want gone. Every block of that colour pops.',burstcol:'That is a power block. Tap a coloured block.',burstearn:'🌈 Burst earned!',
+ shuffled:'The board was stuck, so I shuffled it 🔀',shufdone:'Board shuffled 🔀',undone:'Last tap undone ↶',
+ timeup:"Time's up!",tbonus:'sec',taps:'taps',tbtot:'Bonus time',rank:'Top 5 rank',
+ won:'Level complete! ✅',lost:'Not this time. Try again 💪',tip:'Tip: use 🌈 Burst, 🔀 Shuffle and Hint.',allcleared:'All levels cleared! 👑',
+ m_score:'points to score',m_clear:'blocks to clear',m_power:'power-ups (💣/⚡) to make',m_combo:'groups of 4+ in a row',m_big:'blocks in one tap',times:'times',
+ lb:'Top 5 scores (this phone)',none:'None yet',badges:'Badges',mastery:'Mastery',xp:'XP',close:'OK',
+ tut_t:'How to play Tap Pop',tut1:'Tap a group of 2+ matching blocks next to each other. They pop.',tut2:'Bigger group = more points. 7+ makes a 💣 bomb, 10+ makes a ⚡ cross blast. Tap one to blow up everything around it.',tut3:'Hit groups of 4+ back to back and your combo multiplier grows. A small group in between resets it.',tut4:'Helpers: ↶ one undo, 🔀 one shuffle, 🌈 Burst (earned by reaching combo ×3).',tut5:'Modes: Levels (50 levels, new goals as you go), Classic (15 moves), Rush (60 seconds), Zen (no pressure).',tut_go:"Let's play ▶",
+ tip_first:'Level 1: check the target above. Tap the biggest groups!',tip_stone:'New: ▣ rocks! You cannot tap a rock. Pop a group next to it to crack it.',tip_time:'New: ⏱ timed level! No move limit, beat the target before the clock ends. Your first tap starts it.',tip_multi:'New: two goals at once! Finish all of them.',tip_boss:'👑 Boss level! Tough one. Use 🌈 Burst, 🔀 and ↶.',tip_combo:'Combo goal: hit groups of 4+ back to back, no small groups in between.',tip_power:'Power-up goal: a 7+ group makes a 💣.',prog_now:'Now',lvdone:'Levels cleared'}};
+const BADGES=[
+{id:'first',i:'🎮',te:'మొదటి గేమ్',en:'First game'},{id:'c3',i:'🔥',te:'కాంబో ×3',en:'Combo ×3'},{id:'c5',i:'⚡',te:'కాంబో ×5',en:'Combo ×5'},
+{id:'g12',i:'💥',te:'12+ గ్రూప్',en:'12+ group'},{id:'g20',i:'🌋',te:'20+ గ్రూప్',en:'20+ group'},{id:'s3',i:'⭐',te:'క్లాసిక్ 3 స్టార్స్',en:'Classic 3 stars'},
+{id:'nh',i:'🧠',te:'హింట్ లేకుండా 3★',en:'3 stars, no hints'},{id:'r3',i:'⏱',te:'రష్ 3 స్టార్స్',en:'Rush 3 stars'},{id:'p5',i:'🧩',te:'5 లెవెల్స్',en:'5 levels'},
+{id:'p12',i:'👑',te:'అన్ని 12 లెవెల్స్',en:'All 12 levels'},{id:'d3',i:'📅',te:'3 రోజుల స్ట్రీక్',en:'3-day streak'}];
+
+let G=null,te=true,busy=false,armed=false,roundId=0,oldBest=0,modalOpen=false,timerId=null,lastTick=0,lastSec=-1;
+const $=id=>document.getElementById(id);const PRAISE=[[20,'LEGENDARY!'],[12,'EPIC!'],[8,'AWESOME!'],[5,'GREAT!'],[4,'NICE!']];const symbols=['●','◆','★','✿','💣','⚡','▣'];const NL=50;const hasClock=g=>g.mode==='rush'||(g.mode==='puzzle'&&!!g.goal.time);
+const MODES=['puzzle','classic','rush','zen'];
+const t=k=>text[te?'te':'en'][k];
+function ls(k,d){try{const v=localStorage.getItem(k);return v===null?d:v}catch{return d}}function ss(k,v){try{localStorage.setItem(k,v)}catch{}}
+function jl(k,d){try{return JSON.parse(ls(k,''))||d}catch{return d}}
+te=ls('tp5-lang','te')!=='en';
+function bestKey(m){return m==='classic'?'tap-pop-best-v2':'tp5-best-'+m}
+function getBest(m){return +ls(bestKey(m||G.mode),0)||0}
+function getXp(){return +ls('tap-pop-xp-v1',0)||0}
+function lvOf(x){return 1+Math.floor(Math.sqrt(x/500))}
+function titleOf(l){const k=l>=10?3:l>=6?2:l>=3?1:0;return (te?['కొత్తవాడు','ప్రో','మాస్టర్','లెజెండ్']:['Rookie','Pro','Master','Legend'])[k]}
+function todaySeed(){const d=new Date();return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()}
+function randomSeed(){const a=new Uint32Array(1);if(window.crypto?.getRandomValues)crypto.getRandomValues(a);else a[0]=Date.now();return a[0]||1}
+function plsStars(){return jl('tp5-lvl',[])}
+function lvlStars(l){return +plsStars()[l-1]||0}
+function nextLevel(){const a=plsStars();for(let l=1;l<=NL;l++)if(!a[l-1])return l;return NL}
+function fmt(x){return x.toFixed(2).replace(/\.?0+$/,'')}
+const dot=c=>'<span class="dot c'+c+'">'+symbols[c]+'</span>';
+function oneGoal(m){if(m.t==='score')return m.n+' '+t('m_score');if(m.t==='clear')return dot(m.c)+' ×'+m.n+' '+t('m_clear');if(m.t==='power')return '×'+m.n+' '+t('m_power');
+ if(m.t==='combo')return '×'+m.n+' '+t('times')+' · '+t('m_combo');if(m.t==='stone')return '▣ ×'+m.n+' '+t('m_stone');return m.n+'+ '+t('m_big')}
+function missionText(g,pr){const l=pr?goalProg(g)[2]:null;return '🎯 '+g.goal.g.map((m,i)=>oneGoal(m)+(l?' <small>('+l[i][0]+'/'+l[i][1]+')</small>':'')).join(' + ')+(g.goal.time?' · ⏱'+g.goal.time+'s':'')}
+// ---------- sound (v4 engine plus two new cues) ----------
 let muted=false;try{muted=localStorage.getItem('tap-pop-muted-v1')==='1'}catch{}
 let ac=null,master=null,nbuf=null;
 function audio(){if(muted)return null;try{if(!ac){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;ac=new C();const comp=ac.createDynamicsCompressor();comp.threshold.value=-14;comp.knee.value=12;comp.ratio.value=6;comp.attack.value=.003;comp.release.value=.2;master=ac.createGain();master.gain.value=1.15;master.connect(comp);comp.connect(ac.destination);nbuf=ac.createBuffer(1,ac.sampleRate,ac.sampleRate);const d=nbuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1}if(ac.state!=='running'&&ac.resume)ac.resume();return ac}catch{return null}}
@@ -29,34 +198,14 @@ function noise(t0,d,vol,f0,f1,type){const a=ac;if(!a||!nbuf)return;const s=a.cre
 function clink(t0,f,v){tone(f,t0,.22,'sine',v,.98);tone(f*2.41,t0,.12,'triangle',v*.5,.97);tone(f*3.9,t0,.06,'sine',v*.25)}
 function cascade(n,base,gap,v){for(let i=0;i<n;i++)clink(i*gap+Math.random()*.02,base*(1+Math.random()*.35),v||.16)}
 function boom(n,cb){const k=Math.min(1,(n-2)/12),d=.25+k*.6;noise(0,d,.55+.45*k,5200,260,'lowpass');noise(0,.05,.5,9000,3000,'highpass');tone(170,0,d*.9,'sine',.8+.2*k,.2);tone(95,0,d,'sawtooth',.18+.2*k,.3);if(n>=8){noise(.04,d+.3,.4,2400,120,'bandpass');tone(55,.02,d+.3,'sine',.9,.5)}cascade(Math.min(n,10),1500+(cb||0)*90,.04,.2)}
-function sfx(k,n,cb){try{if(!audio())return;if(k==='pop'){boom(n,cb);const b=380+Math.min(n,12)*45+(cb||0)*40;tone(b,.01,.14,'triangle',.3,2)}else if(k==='big'){boom(n,cb);[523,659,784,1047,1319,1568].forEach((f,i)=>{tone(f,.05+i*.055,.28,'triangle',.3);clink(.05+i*.055,f*2,.16)})}else if(k==='power'){boom(14,cb);noise(0,.8,.6,700,6000,'bandpass');[392,523,659,784,1047].forEach((f,i)=>tone(f,.02+i*.05,.3,'sawtooth',.14))}else if(k==='spawn'){[660,880,1320].forEach((f,i)=>{tone(f,i*.07,.22,'triangle',.3);clink(i*.07,f*2,.14)})}else if(k==='combo'){const b=523*Math.pow(1.06,Math.min(cb||1,8));[1,1.25,1.5,2].forEach((m,i)=>tone(b*m,i*.05,.2,'triangle',.26))}else if(k==='tick'){tone(1200,0,.03,'square',.05)}else if(k==='fall'){tone(650,0,.4,'sine',.09,.25);tone(900,.05,.35,'sine',.05,.3)}else if(k==='land'){tone(130,0,.1,'sine',.3,.6);noise(0,.08,.2,900,200,'lowpass');cascade(n?Math.min(n,6):4,1300,.06,.12)}else if(k==='nope'){tone(190,0,.14,'square',.1,.7)}else if(k==='hint'){tone(880,0,.1,'sine',.2);tone(1175,.09,.12,'sine',.2)}else if(k==='end'){[523,659,784,1047,784,1047,1319].forEach((f,i)=>{tone(f,i*.12,i===6?.6:.18,'triangle',.32);clink(i*.12,f*2,.14)});cascade(16,1700,.07,.18);noise(.6,.7,.4,3000,300,'lowpass')}else if(k==='star'){const b=[784,1047,1319][n||0];tone(b,0,.4,'triangle',.35);clink(0,b*2,.25);noise(0,.2,.25,6000,800,'highpass')}else if(k==='ui'){tone(620,0,.06,'sine',.2)}}catch{}}
+function sfx(k,n,cb){try{if(!audio())return;if(k==='pop'){boom(n,cb);const b=380+Math.min(n,12)*45+(cb||0)*40;tone(b,.01,.14,'triangle',.3,2)}else if(k==='big'){boom(n,cb);[523,659,784,1047,1319,1568].forEach((f,i)=>{tone(f,.05+i*.055,.28,'triangle',.3);clink(.05+i*.055,f*2,.16)})}else if(k==='power'){boom(14,cb);noise(0,.8,.6,700,6000,'bandpass');[392,523,659,784,1047].forEach((f,i)=>tone(f,.02+i*.05,.3,'sawtooth',.14))}else if(k==='spawn'){[660,880,1320].forEach((f,i)=>{tone(f,i*.07,.22,'triangle',.3);clink(i*.07,f*2,.14)})}else if(k==='combo'){const b=523*Math.pow(1.06,Math.min(cb||1,8));[1,1.25,1.5,2].forEach((m,i)=>tone(b*m,i*.05,.2,'triangle',.26))}else if(k==='tick'){tone(1200,0,.03,'square',.05)}else if(k==='fall'){tone(650,0,.4,'sine',.09,.25);tone(900,.05,.35,'sine',.05,.3)}else if(k==='land'){tone(130,0,.1,'sine',.3,.6);noise(0,.08,.2,900,200,'lowpass');cascade(n?Math.min(n,6):4,1300,.06,.12)}else if(k==='nope'){tone(190,0,.14,'square',.1,.7)}else if(k==='hint'){tone(880,0,.1,'sine',.2);tone(1175,.09,.12,'sine',.2)}else if(k==='end'){[523,659,784,1047,784,1047,1319].forEach((f,i)=>{tone(f,i*.12,i===6?.6:.18,'triangle',.32);clink(i*.12,f*2,.14)});cascade(16,1700,.07,.18);noise(.6,.7,.4,3000,300,'lowpass')}else if(k==='star'){const b=[784,1047,1319][n||0];tone(b,0,.4,'triangle',.35);clink(0,b*2,.25);noise(0,.2,.25,6000,800,'highpass')}else if(k==='ui'){tone(620,0,.06,'sine',.2)}else if(k==='shuf'){noise(0,.35,.3,600,5000,'bandpass');[440,554,659,880].forEach((f,i)=>tone(f,.05+i*.06,.18,'triangle',.2))}else if(k==='undo'){tone(700,0,.12,'triangle',.22,.6);tone(520,.08,.14,'triangle',.2,.7)}else if(k==='tick'){tone(1500,0,.05,'square',.07)}}catch{}}
 function buzz(ms){try{if(!muted&&navigator.vibrate)navigator.vibrate(ms)}catch{}}
 function sndBtn(){const b=$('snd');b.textContent=muted?'🔇':'🔊';b.setAttribute('aria-pressed',String(!muted));b.setAttribute('aria-label',muted?'Sound off':'Sound on')}
-const t=k=>text[te?'te':'en'][k];
-function ls(k,d){try{const v=localStorage.getItem(k);return v===null?d:v}catch{return d}}function ss(k,v){try{localStorage.setItem(k,v)}catch{}}
-function getBest(){return +ls('tap-pop-best-v2',0)||0}
-function getXp(){return +ls('tap-pop-xp-v1',0)||0}
-function lvOf(x){return 1+Math.floor(Math.sqrt(x/500))}
-function todaySeed(){const d=new Date();return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()}
-function randomSeed(){const a=new Uint32Array(1);if(window.crypto?.getRandomValues)crypto.getRandomValues(a);else a[0]=Date.now();return a[0]||1}
-function makeRng(s){return ()=>{s|=0;s=s+0x6D2B79F5|0;let v=Math.imul(s^s>>>15,1|s);v=v+Math.imul(v^v>>>7,61|v)^v;return((v^v>>>14)>>>0)/4294967296}}
-function group(i){if(board[i]<0||board[i]>3)return[];const seen=new Set([i]),stack=[i],value=board[i];while(stack.length){const n=stack.pop(),r=Math.floor(n/6),c=n%6;for(const [y,x] of [[r-1,c],[r+1,c],[r,c-1],[r,c+1]]){const k=y*6+x;if(y>=0&&y<6&&x>=0&&x<6&&board[k]===value&&!seen.has(k)){seen.add(k);stack.push(k)}}}return [...seen]}
-function groups(){return board.map((_,i)=>group(i)).filter(g=>g.length>1)}
-function area(i){const r=Math.floor(i/6),c=i%6,out=[];if(board[i]===4){for(let y=r-1;y<=r+1;y++)for(let x=c-1;x<=c+1;x++)if(y>=0&&y<6&&x>=0&&x<6)out.push(y*6+x)}else{for(let k=0;k<6;k++){out.push(r*6+k);if(k!==r)out.push(k*6+c)}}return out.filter(n=>board[n]>=0)}
-function multOf(c){return Math.min(3,1+.25*(c-1))}
-function bonusOf(n){return n>=20?800:n>=12?300:n>=8?120:n>=5?40:0}
-function render(){for(const k of ['rules','scorelabel','moveslabel','bestlabel','share','hint','again','daily','footer'])$(k).innerHTML=t(k);$('eyebrow').textContent=t('eb');$('lang').textContent=te?'English':'తెలుగు';$('score').textContent=score;$('moves').textContent=moves;$('best').textContent=getBest();$('hint').disabled=over||busy;$('lang').disabled=busy;$('share').disabled=busy;$('daily').disabled=busy;board&&0;
- $('board').replaceChildren();board.forEach((v,i)=>{const b=document.createElement('button');b.className='tile '+(v<0?'empty':'c'+v);b.textContent=v<0?'':symbols[v];b.disabled=v<0||over||busy;b.setAttribute('aria-label',(te?'బ్లాక్ ':'Block ')+(i+1)+' '+(v<0?'empty':symbols[v]));b.onclick=()=>tap(i);$('board').append(b)});
- $('challenge').textContent=seed===todaySeed()?t('today'):t('challenge');
- const pct=Math.min(100,score/STAR[2]*100);$('fill').style.width=pct+'%';[0,1,2].forEach(k=>{const m=$('m'+(k+1));m.style.left=(STAR[k]/STAR[2]*100)+'%';m.textContent='★';m.classList.toggle('on',score>=STAR[k])});
- const nx=STAR.find(s=>score<s);$('goalnext').textContent=nx?t('next')+': '+'★'.repeat(STAR.indexOf(nx)+1)+' '+nx:'★★★ ✓';$('lvl').textContent=t('lvl')+' '+lvOf(getXp());
- const cc=$('combo');cc.textContent=t('combo')+' ×'+multOf(Math.max(1,combo)).toFixed(2).replace(/\.?0+$/,'');cc.classList.toggle('on',combo>=2);$('pu').innerHTML='💣 7+ · ⚡ 10+';
- if(over&&!busy){$('summary').style.display='block'}}
 const R=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 function fx(cls,css,parent){const e=document.createElement('div');e.className=cls;e.style.cssText=css;(parent||$('fxl')).append(e);return e}
 function done(a,rm){a.finished.catch(()=>{}).then(()=>rm.remove())}
-function blast(cells,mx,n,kind,label,pow){
- if(R())return;const root=$('board'),rects=cells.map(c=>({c,v:board[c],r:root.children[c].getBoundingClientRect()}));
+function blast(cells,vals,mx,n,kind,label,pow){
+ if(R())return;const root=$('board'),rects=cells.map((c,j)=>({c,v:vals[j],r:root.children[c].getBoundingClientRect()}));
  const cx=rects.reduce((s,o)=>s+o.r.left+o.r.width/2,0)/rects.length,cy=rects.reduce((s,o)=>s+o.r.top+o.r.height/2,0)/rects.length;
  const colors=['#ff7d99','#4fb4ff','#ffd24a','#4fe39a','#ffb36b','#b9a0ff'],big=Math.min(1,n/12),cap=Math.max(2,Math.floor(120/rects.length)),W=innerWidth,H=innerHeight;
  rects.forEach(({v,r})=>{const x=r.left+r.width/2,y=r.top+r.height/2,col=colors[v]||'#ffd24a';
@@ -74,58 +223,147 @@ function blast(cells,mx,n,kind,label,pow){
  if(mx>=1.5||n>=8){const w=PRAISE.find(p=>n>=p[0]),cb=fx('pop-txt',`left:50%;top:${root.getBoundingClientRect().top+root.getBoundingClientRect().height*.4}px;font-size:34px;color:#ffd76a;text-shadow:0 0 18px #ff7a1a,0 3px 3px #000`);cb.textContent=(w?w[1]+' ':'')+(mx>=1.5?'×'+mx.toFixed(2).replace(/\.?0+$/,''):'');done(cb.animate([{opacity:0,transform:'translate(-50%,-50%) scale(.3) rotate(-6deg)'},{opacity:1,transform:'translate(-50%,-50%) scale(1.3) rotate(3deg)',offset:.25},{opacity:1,transform:'translate(-50%,-50%) scale(1)',offset:.7},{opacity:0,transform:'translate(-50%,-90%) scale(1)'}],{duration:1050}),cb)}
 }
 async function animateTiles(items,kf,opt){await Promise.all(items.map(it=>{try{return it.animate(kf(it),opt).finished.catch(()=>{})}catch{return Promise.resolve()}}))}
+
+// ---------- badges / leaderboard ----------
+function badgesGot(){return jl('tp5-badges',[])}
+function toast(m){const e=$('toast');e.textContent=m;e.classList.add('on');clearTimeout(toast.h);toast.h=setTimeout(()=>e.classList.remove('on'),2600)}
+function award(id){const u=badgesGot();if(u.includes(id))return;u.push(id);ss('tp5-badges',JSON.stringify(u));const b=BADGES.find(x=>x.id===id);toast('🏅 '+b.i+' '+b[te?'te':'en']);sfx('star',2)}
+function lbOf(m){return jl('tp5-lb-'+m,[])}
+function addLb(m,score,st){const a=lbOf(m);a.push({s:score,d:Date.now(),st});a.sort((x,y)=>y.s-x.s||x.d-y.d);const r=a.findIndex(x=>x.s===score&&x.st===st&&Math.abs(x.d-Date.now())<5000)+1;ss('tp5-lb-'+m,JSON.stringify(a.slice(0,5)));return r>0&&r<=5?r:0}
+// ---------- modal ----------
+function openModal(html){$('mbody').innerHTML=html;$('modal').classList.add('on');modalOpen=true;const b=$('mbody').querySelector('button');if(b)try{b.focus()}catch{}}
+function closeModal(){$('modal').classList.remove('on');modalOpen=false;lastTick=performance.now()}
+$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalOpen)closeModal()});
+function tutorial(){openModal('<h2>'+t('tut_t')+'</h2><ol class="tut"><li>'+t('tut1')+'</li><li>'+t('tut2')+'</li><li>'+t('tut3')+'</li><li>'+t('tut4')+'</li><li>'+t('tut5')+'</li></ol><button class="primary wide" id="mgo">'+t('tut_go')+'</button>');$('mgo').onclick=()=>{ss('tp5-tut','1');closeModal()}}
+function levelsModal(){const a=plsStars();let h='<h2>'+t('m_puzzle')+'</h2><div class="lgrid">';for(let l=1;l<=NL;l++){const st=+a[l-1]||0,open=l===1||!!a[l-2];h+='<button class="lv'+(G&&G.mode==='puzzle'&&G.lv===l?' cur':'')+'" data-l="'+l+'"'+(open?'':' disabled')+'><b>'+(open?(l%10===0?'👑'+l:l):'🔒')+'</b><span>'+(st?'★'.repeat(st)+'☆'.repeat(3-st):open?'☆☆☆':'')+'</span></button>'}
+ h+='</div><button class="secondary wide" id="mclose">'+t('close')+'</button>';openModal(h);$('mclose').onclick=closeModal;$('mbody').querySelectorAll('.lv').forEach(b=>b.onclick=()=>{closeModal();go('puzzle',{lv:+b.dataset.l})})}
+function progModal(){const xp=getXp(),l=lvOf(xp),nxt=500*l*l,prv=500*(l-1)*(l-1),got=badgesGot();
+ let h='<h2>'+t('prog')+'</h2><div class="mast"><b>'+t('mastery')+': '+titleOf(l)+' · '+t('lvl')+' '+l+'</b><div class="mbar"><i style="width:'+Math.round(Math.min(100,(xp-prv)/(nxt-prv)*100))+'%"></i></div><small>'+xp+' / '+nxt+' '+t('xp')+' · '+t('lvdone')+': '+plsStars().filter(Boolean).length+'/'+NL+'</small></div>';
+ for(const m of ['classic','rush']){const a=lbOf(m);h+='<h3>'+t('m_'+m)+' · '+t('lb')+'</h3>'+(a.length?'<ol class="lb">'+a.map(x=>'<li><b>'+x.s+'</b> '+'★'.repeat(x.st||0)+' <small>'+new Date(x.d).toLocaleDateString()+'</small></li>').join('')+'</ol>':'<p class="dim">'+t('none')+'</p>')}
+ h+='<h3>'+t('badges')+' '+got.length+'/'+BADGES.length+'</h3><div class="bgrid">'+BADGES.map(b=>'<div class="bd'+(got.includes(b.id)?' on':'')+'"><span>'+b.i+'</span><small>'+b[te?'te':'en']+'</small></div>').join('')+'</div><button class="secondary wide" id="mclose">'+t('close')+'</button>';
+ openModal(h);$('mclose').onclick=closeModal}
+// ---------- render ----------
+function setLabels(){const m=G.mode;const set=(k,v)=>{$(k).innerHTML=v};
+ set('rules',t('rules_'+m));set('scorelabel',t('scorelabel'));set('moveslabel',hasClock(G)?t('timelabel'):m==='zen'?t('popslabel'):t('moveslabel'));set('bestlabel',m==='puzzle'?t('starslabel'):t('bestlabel'));
+ set('share',t('share'));set('hint',t('hint'));set('again',m==='puzzle'?t('retry'):t('again'));set('daily',t('daily'));set('footer',t('footer'));set('undo',t('undo'));set('shuf',t('shuf'));set('burst',t('burst'));set('levels',t('levels'));set('prog',t('prog'));set('helpb','?');set('nextlvl',t('nextlvl'));
+ MODES.forEach(k=>{const b=$('mode-'+k);b.textContent=t('m_'+k);b.setAttribute('aria-pressed',String(k===m));b.classList.toggle('on',k===m)});
+ $('eyebrow').textContent={classic:'15 MOVES · ONE CHALLENGE',rush:'60 SECONDS · RUSH',zen:'ZEN · NO LIMITS',puzzle:''+(G.lv%10===0?'👑 BOSS · ':'LEVEL ')+G.lv+'/'+NL}[m];
+ document.documentElement.lang=te?'te':'en';$('lang').textContent=te?'English':'తెలుగు'}
+function showTime(){if(!G||!hasClock(G))return;const s=Math.max(0,Math.ceil(G.time-1e-9));$('moves').textContent=s+'s';$('moves').parentElement.classList.toggle('urgent',s<=10&&G.taps>0&&!G.over)}
+function render(){setLabels();const g=G,m=g.mode;
+ $('score').textContent=g.score;$('moves').textContent=hasClock(g)?Math.ceil(g.time)+'s':m==='zen'?g.taps:g.moves;showTime();
+ $('best').textContent=m==='puzzle'?plsStars().reduce((a,b)=>a+(+b||0),0)+'/'+(NL*3):getBest(m);
+ const dis=busy||modalOpen;$('hint').disabled=g.over||busy;$('lang').disabled=busy;$('share').disabled=busy;$('daily').disabled=busy;MODES.forEach(k=>$('mode-'+k).disabled=busy);
+ $('board').classList.toggle('armed',armed);$('board').replaceChildren();
+ g.board.forEach((v,i)=>{const b=document.createElement('button');b.className='tile '+(v<0?'empty':'c'+v);b.textContent=v<0?'':symbols[v];b.disabled=v<0||g.over||busy;b.setAttribute('aria-label',(te?'బ్లాక్ ':'Block ')+(i+1)+' '+(v<0?'empty':symbols[v]));b.onclick=()=>tap(i);$('board').append(b)});
+ $('challenge').textContent=m==='classic'&&g.seed===todaySeed()?t('today'):t('challenge');
+ // goal bar
+ const gl=$('goal');gl.style.display=m==='zen'?'none':'';
+ if(m==='puzzle'){const p=goalProg(g);$('fill').style.width=(p[0]*100)+'%';[1,2,3].forEach(k=>$('m'+k).style.display='none');$('goalnext').innerHTML=missionText(g,true);$('lvl').textContent=g.goal.time?'':g.moves+' moves'}
+ else if(m!=='zen'){const th=STAR[m];const pct=Math.min(100,g.score/th[2]*100);$('fill').style.width=pct+'%';[0,1,2].forEach(k=>{const e=$('m'+(k+1));e.style.display='';e.style.left=(th[k]/th[2]*100)+'%';e.textContent='★';e.classList.toggle('on',g.score>=th[k])});
+  const nx=th.find(s=>g.score<s);$('goalnext').textContent=nx?t('next')+': '+'★'.repeat(th.indexOf(nx)+1)+' '+nx:'★★★ ✓';$('lvl').textContent=t('lvl')+' '+lvOf(getXp())+' · '+titleOf(lvOf(getXp()))}
+ const cc=$('combo');cc.textContent=t('combo')+' ×'+fmt(multOf(Math.max(1,g.combo)));cc.classList.toggle('on',g.combo>=2);$('pu').innerHTML='💣 7+ · ⚡ 10+';
+ const U=$('undo'),S=$('shuf'),B=$('burst');U.disabled=busy||g.over||!g.snap||g.undoLeft<1;S.disabled=busy||g.over||g.shufLeft<1;B.disabled=busy||g.over||g.burst<1;
+ U.textContent=t('undo')+' '+g.undoLeft;S.textContent=t('shuf')+' '+g.shufLeft;B.textContent=(armed?'✋ ':'')+t('burst')+' '+g.burst;B.classList.toggle('armed',armed);
+ $('levels').style.display=m==='puzzle'?'':'none';$('daily').style.display=m==='classic'?'':'none';
+ $('nextlvl').style.display='none';
+ if(g.over&&!busy)$('summary').style.display='block'}
+// ---------- tap ----------
 async function tap(i){
-if(over||busy)return;const pw=board[i]>=4,g=pw?area(i):group(i);if(g.length<2&&!pw){sfx('nope');buzz(20);$('status').textContent=t('single');return}
-busy=true;const id=roundId,reduced=R();$('hint').disabled=true;$('lang').disabled=true;$('share').disabled=true;$('daily').disabled=true;
-const tiles=[...$('board').children].slice(0,36);tiles.forEach(b=>{b.disabled=true;b.classList.remove('hint')});
-const n=g.length,big=!pw&&n>=4;combo=(big||pw)?combo+1:0;bestCombo=Math.max(bestCombo,combo);const mx=(big||pw)?multOf(combo):1;
-let base=pw?n*20+60:n*n*5,bonus=pw?0:bonusOf(n);const gained=Math.round((base+bonus)*mx);maxGroup=Math.max(maxGroup,n);
-const spawn=pw?0:n>=10?5:n>=7?4:0;if(spawn)pus++;
-const pr=PRAISE.find(p=>n>=p[0]);const label='+'+gained;
-sfx(pw?'power':n>=8?'big':'pop',n,combo);if(combo>=2)setTimeout(()=>sfx('combo',0,combo),140);buzz(pw||n>=8?[40,30,60]:n>=4?30:15);
-blast(g,mx,n,'',label,pw);
-if(!reduced){g.forEach((n2,j)=>{try{tiles[n2].animate([{transform:'scale(1)',opacity:1},{transform:'scale(1.35)',opacity:1,offset:.45},{transform:'scale(1.7)',opacity:0}],{duration:200,fill:'forwards',easing:'ease-out'})}catch{}});await new Promise(r=>setTimeout(r,210))}
-if(id!==roundId)return;
-const origins=Array(36).fill(0);let spawnIdx=-1;g.forEach(c=>board[c]=-1);if(spawn)board[i]=spawn;score+=gained;moves--;
-// Refill order and number of seeded RNG calls stay deterministic.
-for(let c=0;c<6;c++){
- const col=[],from=[];for(let r=0;r<6;r++)if(board[r*6+c]>=0){col.push(board[r*6+c]);from.push(r)}
- const missing=6-col.length;if(spawn&&c===i%6)spawnIdx=(missing+from.indexOf(Math.floor(i/6)))*6+c;while(col.length<6)col.unshift(Math.floor(rng()*4));
- for(let r=0;r<6;r++){board[r*6+c]=col[r];origins[r*6+c]=r<missing?r-missing:from[r-missing]}
-}
-if(score>getBest())ss('tap-pop-best-v2',score);
-over=moves===0||(groups().length===0&&!board.some(v=>v>3));let sweep=0;if(over&&moves>0){sweep=moves*30;score+=sweep}
-render();$('status').textContent='+'+gained+' '+t('plus')+(pr?' · '+pr[1]:'')+(mx>1?' · ×'+mx.toFixed(2).replace(/\.?0+$/,''):'');
-if(spawn){setTimeout(()=>sfx('spawn'),180)}
-if(!reduced){
- const next=[...$('board').children].slice(0,36),step=next[6].getBoundingClientRect().top-next[0].getBoundingClientRect().top;
- const drops=next.map((el,n2)=>({el,dy:(origins[n2]-Math.floor(n2/6))*step})).filter(d=>d.dy<0);
- sfx('fall');setTimeout(()=>{if(id===roundId)sfx('land',drops.length)},430);
- if(spawn&&spawnIdx>=0)try{next[spawnIdx].animate([{transform:'scale(0)'},{transform:'scale(1.5)',offset:.6},{transform:'scale(1)'}],{duration:600,delay:420,fill:'backwards'})}catch{}
- await Promise.all(drops.map(({el,dy})=>{try{return el.animate([{transform:`translateY(${dy}px)`},{transform:'translateY(0)',offset:.62,easing:'ease-out'},{transform:'translateY(-9px)',offset:.78,easing:'ease-in'},{transform:'translateY(0)',offset:.9,easing:'ease-out'},{transform:'translateY(-2px)',offset:.95},{transform:'translateY(0)'}],{duration:600+Math.min(300,Math.abs(dy)*.8),easing:'cubic-bezier(.45,0,.9,.6)',fill:'backwards'}).finished.catch(()=>{})}catch{return Promise.resolve()}}));
+ const g=G;if(!g||g.over||busy||modalOpen)return;if(hasClock(g)&&g.taps>0&&g.time<=0)return;
+ const kind=kindAt(g,i,armed);
+ if(armed&&g.board[i]>3){$('status').textContent=t('burstcol');sfx('nope');return}
+ const cells=cellsFor(g,i,kind);if(kind==='grp'&&cells.length<2){sfx('nope');buzz(20);$('status').textContent=g.board[i]===6?t('stonehit'):t('single');return}
+ busy=true;armed=false;const id=roundId,fast=hasClock(g),reduced=R();
+ const tiles=[...$('board').children].slice(0,36);tiles.forEach(b=>{b.disabled=true;b.classList.remove('hint')});$('hint').disabled=true;$('lang').disabled=true;$('share').disabled=true;$('daily').disabled=true;MODES.forEach(k=>$('mode-'+k).disabled=true);
+ const snap=snapshot(g),first=g.taps===0;const info=applyMove(g,i,kind);
+ if(!info){busy=false;render();return}
+ g.snap=snap;
+ if(hasClock(g)){if(first)startTimer();if(info.timeBonus)g.time=Math.min(99,g.time+info.timeBonus)}
+ if(g.mode!=='puzzle'&&g.score>getBest(g.mode))ss(bestKey(g.mode),g.score);
+ const pw=kind!=='grp',n=info.n;
+ sfx(pw?'power':n>=8?'big':'pop',n,g.combo);if(g.combo>=2)setTimeout(()=>sfx('combo',0,g.combo),140);buzz(pw||n>=8?[40,30,60]:n>=4?30:15);
+ blast(info.cells,info.vals,info.mx,n,'','+'+info.gained,pw);
+ if(!reduced){info.cells.forEach(c=>{try{tiles[c].animate([{transform:'scale(1)',opacity:1},{transform:'scale(1.35)',opacity:1,offset:.45},{transform:'scale(1.7)',opacity:0}],{duration:fast?110:200,fill:'forwards',easing:'ease-out'})}catch{}});await new Promise(r=>setTimeout(r,fast?100:210))}
  if(id!==roundId)return;
-}
-if(id!==roundId)return;busy=false;if(over)finish(sweep);else render();
-}
-function stars(){return STAR.filter(s=>score>=s).length}
-function finish(sweep){
- const xp0=getXp(),l0=lvOf(xp0);ss('tap-pop-xp-v1',xp0+score);const l1=lvOf(xp0+score);const st=stars(),newBest=score>=getBest()&&score>oldBest;if(score>getBest())ss('tap-pop-best-v2',score);
- let extra='';if(seed===todaySeed()){const d=todaySeed(),last=+ls('tap-pop-daily-last',0);let sk=+ls('tap-pop-daily-streak',0);if(last!==d){const y=new Date();y.setDate(y.getDate()-1);const ys=y.getFullYear()*10000+(y.getMonth()+1)*100+y.getDate();sk=last===ys?sk+1:1;ss('tap-pop-daily-last',d);ss('tap-pop-daily-streak',sk)}extra='<br>📅 '+t('dailydone')+' · 🔥 '+sk+' '+t('streak')}
- render();const s=$('summary');s.style.display='block';
- s.innerHTML='<div class="stars">'+'★'.repeat(st)+'<span style="opacity:.3">'+'★'.repeat(3-st)+'</span></div><b>'+score+'</b> '+t('plus')+(newBest?' · '+t('newbest'):'')+'<br>'+t('combo')+' ×'+multOf(Math.max(1,bestCombo)).toFixed(2).replace(/\.?0+$/,'')+' · '+t('bigg')+': '+maxGroup+' · '+t('pu')+': '+pus+(sweep?'<br>'+t('sweep')+': +'+sweep:'')+(l1>l0?'<br>🎊 '+t('lvlup')+' '+t('lvl')+' '+l1:'')+extra+'<br>'+t('finish');
- $('status').textContent=st===3?t('allstars'):t('end');
- sfx('end');for(let k=0;k<st;k++)setTimeout(()=>sfx('star',k),700+k*320);
- if(!R()&&st>0){for(let k=0;k<st;k++)setTimeout(()=>{const r=$('summary').getBoundingClientRect();blast([0],1,6,'','★',false)},900+k*320)}
-}
-function start(s){roundId++;busy=false;$('fxl').replaceChildren();seed=s>>>0||1;rng=makeRng(seed);board=Array.from({length:36},()=>Math.floor(rng()*4));score=0;moves=15;hints=0;over=false;combo=0;bestCombo=0;maxGroup=0;pus=0;oldBest=getBest();$('summary').style.display='none';$('shareout').style.display='none';render();$('status').textContent=t('ready');if(!groups().length){board[1]=board[0];render()}}
+ // badges tied to this tap
+ if(g.combo>=3)award('c3');if(g.combo>=5)award('c5');if(kind==='grp'&&n>=12)award('g12');if(kind==='grp'&&n>=20)award('g20');
+ const pr=PRAISE.find(p=>n>=p[0]);
+ busy=!fast;render();
+ let msg='+'+info.gained+' '+t('plus')+(pr&&kind==='grp'?' · '+pr[1]:'')+(info.mx>1?' · ×'+fmt(info.mx):'')+(info.timeBonus?' · +'+info.timeBonus+t('tbonus'):'')+(info.stoneN?' · ▣ ×'+info.stoneN:'');
+ if(info.earnedBurst){msg+=' · '+t('burstearn');setTimeout(()=>sfx('spawn'),260)}
+ if(info.reshuffled){msg+=' · '+t('shuffled')}
+ $('status').textContent=msg;if(info.spawn)setTimeout(()=>sfx('spawn'),180);
+ let dropP=Promise.resolve();
+ if(!reduced){const next=[...$('board').children].slice(0,36);
+  if(info.reshuffled){sfx('shuf');dropP=animateTiles(next,()=>[{transform:'scale(.3) rotate(-25deg)',opacity:.2},{transform:'scale(1.12)',offset:.7},{transform:'scale(1)',opacity:1}],{duration:420,easing:'ease-out'})}
+  else{const step=next[6].getBoundingClientRect().top-next[0].getBoundingClientRect().top;
+   const drops=next.map((el,k)=>({el,dy:(info.origins[k]-Math.floor(k/N))*step})).filter(d=>d.dy<0);
+   sfx('fall');setTimeout(()=>{if(id===roundId)sfx('land',drops.length)},430);
+   if(info.spawn&&info.spawnIdx>=0)try{next[info.spawnIdx].animate([{transform:'scale(0)'},{transform:'scale(1.5)',offset:.6},{transform:'scale(1)'}],{duration:600,delay:420,fill:'backwards'})}catch{}
+   dropP=Promise.all(drops.map(({el,dy})=>{try{return el.animate([{transform:`translateY(${dy}px)`},{transform:'translateY(0)',offset:.62,easing:'ease-out'},{transform:'translateY(-9px)',offset:.78,easing:'ease-in'},{transform:'translateY(0)',offset:.9,easing:'ease-out'},{transform:'translateY(-2px)',offset:.95},{transform:'translateY(0)'}],{duration:fast?330:600+Math.min(300,Math.abs(dy)*.8),easing:'cubic-bezier(.45,0,.9,.6)',fill:'backwards'}).finished.catch(()=>{})}catch{return Promise.resolve()}}))}}
+ if(!fast)await dropP;
+ if(id!==roundId)return;busy=false;
+ if(g.over)finish();else if(hasClock(g)&&g.time<=0)endRush();else render()}
+// ---------- rush timer ----------
+function startTimer(){if(timerId)return;lastTick=performance.now();lastSec=-1;timerId=setInterval(tick,100)}
+function stopTimer(){if(timerId){clearInterval(timerId);timerId=null}}
+function tick(){if(!G||!hasClock(G)||G.over){stopTimer();return}const now=performance.now();const dt=Math.min(.25,(now-lastTick)/1000);lastTick=now;if(modalOpen)return;G.time-=dt;
+ const s=Math.ceil(G.time);if(s!==lastSec&&s<=5&&s>0){lastSec=s;sfx('tick')}
+ if(G.time<=0){G.time=0;showTime();if(!busy)endRush()}else showTime()}
+function endRush(){if(!G||G.over)return;G.over=true;stopTimer();finish()}
+// ---------- finish ----------
+function finish(){
+ const g=G,m=g.mode;stopTimer();g.over=true;armed=false;
+ const xp0=getXp(),l0=lvOf(xp0);ss('tap-pop-xp-v1',xp0+g.score);const l1=lvOf(xp0+g.score);
+ const sum={st:0,newBest:false,rank:0,streak:0,lvup:l1>l0?l1:0};award('first');
+ if(m==='puzzle'){sum.st=puzzleStars(g);const a=plsStars();if(g.won){if(sum.st>(+a[g.lv-1]||0)){a[g.lv-1]=sum.st;ss('tp5-lvl',JSON.stringify(a))}const done=a.filter(Boolean).length;if(done>=5)award('p5');if(done>=NL)award('p12');sum.all=done>=NL}}
+ else{sum.st=scoreStars(g);if(g.score>getBest(m))ss(bestKey(m),g.score);sum.newBest=g.score>=getBest(m)&&g.score>oldBest;sum.rank=addLb(m,g.score,sum.st);
+  if(m==='classic'){if(sum.st===3){award('s3');if(g.hints===0)award('nh')}
+   if(g.seed===todaySeed()){const d=todaySeed(),last=+ls('tap-pop-daily-last',0);let sk=+ls('tap-pop-daily-streak',0);if(last!==d){const y=new Date();y.setDate(y.getDate()-1);const ys=y.getFullYear()*10000+(y.getMonth()+1)*100+y.getDate();sk=last===ys?sk+1:1;ss('tap-pop-daily-last',d);ss('tap-pop-daily-streak',sk)}sum.streak=sk;if(sk>=3)award('d3')}}
+  if(m==='rush'&&sum.st===3)award('r3')}
+ g.sum=sum;render();showSummary();
+ sfx(m==='puzzle'&&!g.won?'nope':'end');for(let k=0;k<sum.st;k++)setTimeout(()=>sfx('star',k),700+k*320);
+ if(!R()&&sum.st>0){for(let k=0;k<sum.st;k++)setTimeout(()=>{blast([0],[0],1,6,'','★',false)},900+k*320)}}
+function showSummary(){const g=G,m=g.mode,u=g.sum;if(!u)return;
+ const starsHtml='<div class="stars">'+'★'.repeat(u.st)+'<span style="opacity:.3">'+'★'.repeat(3-u.st)+'</span></div>';let head;
+ if(m==='puzzle')head=starsHtml+'<b>'+(g.won?t('won'):t('lost'))+'</b><br>'+missionText(g)+'<br><b>'+g.score+'</b> '+t('plus')+(g.won?(u.all?'<br>'+t('allcleared'):''):'<br>'+t('tip'));
+ else head=starsHtml+'<b>'+g.score+'</b> '+t('plus')+(u.newBest?' · '+t('newbest'):'');
+ const h=head+'<br>'+t('combo')+' ×'+fmt(multOf(Math.max(1,g.bestCombo)))+' · '+t('bigg')+': '+g.maxGroup+' · '+t('pu')+': '+g.pus+(m==='rush'?'<br>'+t('taps')+': '+g.taps+(g.timeBonusTotal?' · '+t('tbtot')+': +'+g.timeBonusTotal+t('tbonus'):''):'')+(u.lvup?'<br>🎊 '+t('lvlup')+' '+t('lvl')+' '+u.lvup+' · '+titleOf(u.lvup):'')+(u.rank?'<br>🏆 '+t('rank')+': #'+u.rank:'')+(u.streak?'<br>📅 '+t('dailydone')+' · 🔥 '+u.streak+' '+t('streak'):'')+(m==='puzzle'?'':'<br>'+t('finish'));
+ const s=$('summary');s.style.display='block';s.innerHTML=h+(m==='puzzle'?(g.won&&g.lv<NL?'<button class="primary wide" id="sumnext">'+t('nextlvl')+'</button>':'')+(g.won?'':'<button class="primary wide" id="sumretry">'+t('retry')+'</button>')+'<button class="secondary wide" id="sumlv">'+t('levels')+'</button>':'');
+ if(m==='puzzle'){const n=$('sumnext'),r=$('sumretry');if(n)n.onclick=()=>{sfx('ui');go('puzzle',{lv:g.lv+1})};if(r)r.onclick=()=>{sfx('ui');go('puzzle',{lv:g.lv})};$('sumlv').onclick=()=>{sfx('ui');levelsModal()}}
+ try{s.scrollIntoView({behavior:'smooth',block:'nearest'})}catch{}
+ $('status').textContent=m==='rush'?t('timeup'):m==='puzzle'?(g.won?t('won'):t('lost')):(u.st===3?t('allstars'):t('end'))}
+// ---------- start / navigation ----------
+function lvlTip(){const g=G.goal,ks=g.g.map(x=>x.t);const seen=jl('tp5-tips',[]);let k=null;if(G.lv===1)k='tip_first';else if(ks.includes('stone')&&!seen.includes('stone'))k='tip_stone';else if(g.time&&!seen.includes('time'))k='tip_time';else if(ks.length>1&&!seen.includes('multi'))k='tip_multi';else if(G.lv%10===0&&!seen.includes('boss'))k='tip_boss';else if(ks.includes('combo')&&!seen.includes('combo'))k='tip_combo';else if(ks.includes('power')&&!seen.includes('power'))k='tip_power';if(!k)return'';const key=k.slice(4);if(key!=='first'){seen.push(key);ss('tp5-tips',JSON.stringify(seen))}return t(k)}
+function start(mode,o){roundId++;busy=false;armed=false;stopTimer();G=newGame(mode,o);oldBest=mode==='puzzle'?0:getBest(mode);$('fxl').replaceChildren();$('summary').style.display='none';$('shareout').style.display='none';render();$('status').textContent=mode==='puzzle'?(lvlTip()||t('ready_puzzle')):t('ready_'+mode)}
+function go(mode,o){const u=new URL(location.href);u.search='';
+ if(mode==='puzzle'){u.searchParams.set('m','p');u.searchParams.set('lv',o.lv)}else{if(mode!=='classic')u.searchParams.set('m',mode==='rush'?'r':'z');u.searchParams.set('seed',o.seed)}
+ history.replaceState(null,'',u);start(mode,o)}
+function newOf(mode){return mode==='puzzle'?{lv:nextLevel()}:{seed:randomSeed()}}
+MODES.forEach(k=>{$('mode-'+k).onclick=()=>{if(busy||(G&&G.mode===k))return;sfx('ui');go(k,newOf(k))}});
 $('snd').onclick=()=>{muted=!muted;ss('tap-pop-muted-v1',muted?'1':'0');sndBtn();if(!muted)sfx('ui')};sndBtn();
-$('lang').onclick=()=>{sfx('ui');te=!te;render();$('status').textContent=over?t('end'):t('ready')};
-function go(s){const u=new URL(location.href);u.search='';u.searchParams.set('seed',s);history.replaceState(null,'',u);start(s)}
-$('again').onclick=()=>{sfx('ui');go(randomSeed())};$('daily').onclick=()=>{sfx('ui');go(todaySeed())};
-$('hint').onclick=()=>{if(over||busy)return;const gs=groups().sort((a,b)=>b.length-a.length);if(!gs.length){const p=board.findIndex(v=>v>3);if(p>=0)$('board').children[p].classList.add('hint');return}document.querySelectorAll('.hint').forEach(b=>b.classList.remove('hint'));gs[0].forEach(i=>$('board').children[i].classList.add('hint'));hints++;sfx('hint');$('status').textContent=t('hintmsg')};
-$('share').onclick=async()=>{const u=new URL(location.href);u.search='';u.searchParams.set('seed',seed);u.searchParams.set('sv',SV);const st='★'.repeat(stars())+'☆'.repeat(3-stars());const msg=te?'Tap Popలో నా స్కోర్ '+score+' '+st+'! ఇదే బోర్డ్‌లో మీ స్కోర్ ఎంత?':'My Tap Pop score is '+score+' '+st+'! Try the same board.';const data={title:'Tap Pop Challenge',text:msg,url:u.href};if(navigator.share){try{await navigator.share(data);return}catch(e){if(e.name==='AbortError')return}}try{await navigator.clipboard.writeText(msg+'\n'+u.href);$('status').textContent=t('copy')}catch{$('shareout').textContent=msg+' '+u.href;$('shareout').style.display='block';$('status').textContent=t('manual')}};
-const raw=new URL(location.href).searchParams.get('seed');start(raw&&/^\d{1,10}$/.test(raw)?Number(raw):randomSeed());
-const VERSION='4';
-async function checkUpdate(){try{const r=await fetch(location.pathname+'?_v='+Date.now(),{cache:'no-store'});const m=(await r.text()).match(/const VERSION='(\d+)'/);if(m&&m[1]!==VERSION){if(!busy&&moves===15&&!over&&!sessionStorage.getItem('tp-reloaded-'+m[1])){sessionStorage.setItem('tp-reloaded-'+m[1],'1');const u=new URL(location.href);u.searchParams.set('v',m[1]);location.replace(u.href)}else{$('footer').innerHTML+='<br><b>New version ready - tap New game or reload.</b>'}}}catch{}}
+$('lang').onclick=()=>{sfx('ui');te=!te;ss('tp5-lang',te?'te':'en');render();if(!G.over)$('status').textContent=t('ready_'+G.mode);if(G.over)showSummary()};
+$('again').onclick=()=>{if(busy&&G.mode!=='rush')return;sfx('ui');go(G.mode,G.mode==='puzzle'?{lv:G.lv}:{seed:randomSeed()})};
+$('daily').onclick=()=>{sfx('ui');go('classic',{seed:todaySeed()})};
+$('nextlvl').onclick=()=>{sfx('ui');go('puzzle',{lv:Math.min(NL,G.lv+1)})};
+$('levels').onclick=()=>{sfx('ui');levelsModal()};$('prog').onclick=()=>{sfx('ui');progModal()};$('helpb').onclick=()=>{sfx('ui');tutorial()};
+$('hint').onclick=()=>{if(G.over||busy||modalOpen)return;document.querySelectorAll('.hint').forEach(b=>b.classList.remove('hint'));const i=bestMove(G);if(i<0)return;const cells=G.board[i]>3?[i]:groupOf(G.board,i);cells.forEach(k=>$('board').children[k].classList.add('hint'));G.hints++;sfx('hint');$('status').textContent=t('hintmsg')};
+$('undo').onclick=()=>{if(busy||G.over||!G.snap||G.undoLeft<1)return;restore(G,G.snap);G.snap=null;G.undoLeft--;armed=false;sfx('undo');render();$('status').textContent=t('undone')};
+$('shuf').onclick=()=>{if(busy||G.over||G.shufLeft<1)return;G.shufLeft--;armed=false;reshuffle(G);G.snap=null;sfx('shuf');render();$('status').textContent=t('shufdone');if(!R())animateTiles([...$('board').children].slice(0,36),()=>[{transform:'scale(.3) rotate(-25deg)',opacity:.2},{transform:'scale(1.12)',offset:.7},{transform:'scale(1)',opacity:1}],{duration:420,easing:'ease-out'})};
+$('burst').onclick=()=>{if(busy||G.over||G.burst<1)return;armed=!armed;sfx('ui');render();$('status').textContent=armed?t('burstask'):t('ready_'+G.mode)};
+$('share').onclick=async()=>{const g=G,u=new URL(location.href);u.search='';let st,msg;
+ if(g.mode==='puzzle'){u.searchParams.set('m','p');u.searchParams.set('lv',g.lv);st='★'.repeat(lvlStars(g.lv))+'☆'.repeat(3-lvlStars(g.lv));msg=te?'Tap Pop పజిల్ లెవెల్ '+g.lv+' '+st+'! మీరు చేయగలరా?':'Tap Pop puzzle level '+g.lv+' '+st+'! Can you beat it?'}
+ else{if(g.mode!=='classic')u.searchParams.set('m',g.mode==='rush'?'r':'z');u.searchParams.set('seed',g.seed);u.searchParams.set('sv',g.mode==='classic'?SV_CLASSIC:SV_NEW);st='★'.repeat(scoreStars(g))+'☆'.repeat(3-scoreStars(g));const mn=t('m_'+g.mode);msg=te?'Tap Pop '+mn+'లో నా స్కోర్ '+g.score+' '+st+'! ఇదే బోర్డ్‌లో మీ స్కోర్ ఎంత?':'My Tap Pop '+mn+' score is '+g.score+' '+st+'! Try the same board.'}
+ const data={title:'Tap Pop Challenge',text:msg,url:u.href};if(navigator.share){try{await navigator.share(data);return}catch(e){if(e.name==='AbortError')return}}try{await navigator.clipboard.writeText(msg+'\n'+u.href);$('status').textContent=t('copy')}catch{$('shareout').textContent=msg+' '+u.href;$('shareout').style.display='block';$('status').textContent=t('manual')}};
+// boot
+{const p=new URL(location.href).searchParams,mm=p.get('m'),raw=p.get('seed'),lv=+p.get('lv');
+ const seed=raw&&/^\d{1,10}$/.test(raw)?Number(raw):randomSeed();
+ if(mm==='p')start('puzzle',{lv:lv>=1&&lv<=NL?lv:nextLevel()});else if(mm==='r')start('rush',{seed});else if(mm==='z')start('zen',{seed});else if(raw)start('classic',{seed});else start('puzzle',{lv:nextLevel()});
+ if(!ls('tp5-tut',''))tutorial()}
+const VERSION='5';
+async function checkUpdate(){try{const r=await fetch(location.pathname+'?_v='+Date.now(),{cache:'no-store'});const m=(await r.text()).match(/const VERSION='(\d+)'/);if(m&&m[1]!==VERSION){if(!busy&&G&&G.taps===0&&!G.over&&!modalOpen&&!sessionStorage.getItem('tp-reloaded-'+m[1])){sessionStorage.setItem('tp-reloaded-'+m[1],'1');const u=new URL(location.href);u.searchParams.set('v',m[1]);location.replace(u.href)}else{$('footer').innerHTML+='<br><b>New version ready - tap New game or reload.</b>'}}}catch{}}
 checkUpdate();setInterval(checkUpdate,120000);
+
 </script></body></html>
