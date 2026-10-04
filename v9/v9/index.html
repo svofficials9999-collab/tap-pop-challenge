@@ -433,6 +433,10 @@ async function previewScore(){if(busy)return;await makeCard().catch(()=>{});shar
 $('share').onclick=previewScore;$('sharetop').onclick=previewScore;
 const baseSummary=showSummary;showSummary=function(){baseSummary();const b=document.createElement('button');b.id='sumshare';b.className='primary wide';b.textContent=te?'స్కోర్ కార్డ్ షేర్ ↗':'Share Score Card ↗';b.onclick=previewScore;$('summary').append(b)};
 
+
+// Add a distinct shot transient, low-end impact and fading echo to gun helpers.
+const baseSfx=sfx;sfx=function(k,n,cb){if(k!=='zap'&&k!=='snipe')return baseSfx(k,n,cb);try{if(!audio())return;const laser=k==='zap';noise(0,.045,.48,7000,900,'highpass');tone(laser?1550:180,0,laser?.22:.14,laser?'sawtooth':'triangle',.26,laser?.12:.25);tone(laser?95:62,.015,.28,'sine',.36,.45);noise(.02,laser?.3:.18,.32,2800,180,'lowpass');for(let i=1;i<=3;i++){const d=.11*i;noise(d,.075,.12/ i,2200,500,'bandpass');tone(laser?460:130,d,.13,'triangle',.09/i,.4)}}catch{}};
+
 // boot
 {const p=new URL(location.href).searchParams,mm=p.get('m'),raw=p.get('seed'),lv=+p.get('lv');
  const seed=raw&&/^\d{1,10}$/.test(raw)?Number(raw):randomSeed();
