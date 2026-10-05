@@ -652,8 +652,96 @@ try{
  if(modalOpen)pushM();
 }catch{}
 })();
-const VERSION='22';
+const VERSION='23';
 async function checkUpdate(){if(!navigator.onLine)return;try{const r=await fetch(location.pathname+'?_v='+Date.now(),{cache:'no-store'});if(!r.ok)return;const m=(await r.text()).match(/const VERSION='(\d+)'/);if(m&&m[1]!==VERSION){updateVersion=m[1];$('install').textContent=te?'కొత్త వెర్షన్ ↻':'Update ready ↻';$('install').onclick=()=>location.reload();if(!busy&&G&&G.taps===0&&!G.over&&!modalOpen&&!sessionStorage.getItem('tp-reloaded-'+m[1])){sessionStorage.setItem('tp-reloaded-'+m[1],'1');const u=new URL(location.href);u.searchParams.set('v',m[1]);location.replace(u.href)}}}catch{}}
 if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).then(r=>{r.update().catch(()=>{});}).catch(()=>{});}
 checkUpdate();setInterval(checkUpdate,120000);window.addEventListener('online',checkUpdate);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});
+// ===== v23: world themes, boss levels, level twists, varied blast sounds =====
+(function(){
+const WORLDS=[
+ {n:'Sunrise',e:'🌅',nt:'సూర్యోదయం',tw:null,sy:['●','◆','★','✿'],rad:'50%',c:null},
+ {n:'Candy Land',e:'🍭',nt:'క్యాండీ లాండ్',tw:'refund',sy:['🍬','🍭','🍩','🍪'],rad:'42%',c:[['#ff8fc5','#e0338a'],['#8fe0ff','#2a9bd8'],['#ffe27a','#e0a800'],['#b8ff9a','#4cc43a']]},
+ {n:'Ocean',e:'🌊',nt:'సముద్రం',tw:'wave',sy:['🐟','🐚','⭐','🦀'],rad:'28% 28% 50% 50%',c:[['#6fe3ff','#0f86b8'],['#9ab8ff','#3a55c8'],['#a8ffe0','#17a37e'],['#ffd0a0','#e0763a']]},
+ {n:'Desert Gold',e:'🏜️',nt:'ఎడారి బంగారం',tw:'gold',sy:['◆','▲','●','■'],rad:'10%',c:[['#ffd36a','#c78a00'],['#ffa36a','#c2480d'],['#fff0a8','#b89a1a'],['#e8b0ff','#8a3fc0']]},
+ {n:'Jungle',e:'🌴',nt:'అడవి',tw:'combo',sy:['🍃','🍎','🍋','🍇'],rad:'50% 8% 50% 8%',c:[['#8aff7a','#1f9a3a'],['#ff8a8a','#c22b2b'],['#ffee70','#c0a000'],['#d89aff','#7a2fc8']]},
+ {n:'Ice Palace',e:'🧊',nt:'మంచు కోట',tw:'refund',sy:['❄','◇','✦','✧'],rad:'4px 22px 4px 22px',c:[['#d6f3ff','#5aa8d6'],['#c0c8ff','#6a6ee0'],['#e8fff8','#6ac8b4'],['#ffe0f4','#d27ab4']]},
+ {n:'Lava Core',e:'🌋',nt:'లావా',tw:'gold',sy:['🔥','💥','⚡','☄'],rad:'35% 65% 35% 65%',c:[['#ffb066','#e03c00'],['#ff7a7a','#a80f0f'],['#ffe066','#d68a00'],['#c8a0ff','#6a2fc0']]},
+ {n:'Neon City',e:'🌃',nt:'నియాన్ సిటీ',tw:'wave',sy:['◉','◈','▣','✚'],rad:'18%',c:[['#ff5cf0','#8a10b8'],['#5cfff0','#0a8fa0'],['#faff5c','#9aa000'],['#7a8cff','#2a2ec8']]},
+ {n:'Galaxy',e:'🪐',nt:'గెలాక్సీ',tw:'combo',sy:['🪐','🌙','✨','☀'],rad:'50%',c:[['#b49cff','#4a2fc8'],['#7ad0ff','#1a6ad0'],['#ffe9a0','#c89a20'],['#ff9ad0','#c02a80']]},
+ {n:'Dragon Realm',e:'🐉',nt:'డ్రాగన్ లోకం',tw:'refund',sy:['🐲','💎','🔱','👑'],rad:'30%',c:[['#ff6a6a','#8f0000'],['#ffd24a','#a87000'],['#6aff9a','#007a3a'],['#6ab0ff','#00308f']]}
+];
+const TW={refund:['🎁','Big group (7+) = +1 move','7+ గ్రూప్ = +1 మూవ్'],wave:['🌊','Every 3rd tap scores ×2','ప్రతి 3వ ట్యాప్ ×2 స్కోర్'],gold:['💰','Groups of 5+ score +40%','5+ గ్రూప్ = +40% స్కోర్'],combo:['⚡','Each combo adds +30 points','కాంబోకి +30 పాయింట్లు']};
+const wOf=lv=>Math.min(9,Math.floor((lv-1)/5));
+const isBoss=lv=>lv%5===0;
+function cur(){return (typeof G!=='undefined'&&G&&G.mode==='puzzle')?G:null}
+// CSS skins
+let css='';
+WORLDS.forEach((w,i)=>{if(!w.c)return;
+ w.c.forEach((p,k)=>{css+=`body[data-world="${i}"] .tile.c${k}{background:radial-gradient(circle at 30% 25%,${p[0]},${p[1]} 62%,#0006)!important;border-radius:${w.rad}!important;color:#fff!important}`});
+ css+=`body[data-world="${i}"] .tile.c0,body[data-world="${i}"] .tile.c1,body[data-world="${i}"] .tile.c2,body[data-world="${i}"] .tile.c3{font-size:22px}`;
+});
+css+=`body[data-boss="1"] .tile.c0,body[data-boss="1"] .tile.c1,body[data-boss="1"] .tile.c2,body[data-boss="1"] .tile.c3{outline:2px solid #ffd76a88;outline-offset:-2px}body[data-boss="1"] #board{box-shadow:0 0 30px #ff5a2a99,inset 0 0 30px #ffb02a33!important;border-radius:14px}
+#worldtag{margin:6px 0 2px;padding:6px 10px;border-radius:12px;background:#ffffff10;border:1px solid #ffffff22;font-size:12px;line-height:1.35;text-align:center;color:#ffe9a8}#worldtag.boss{background:linear-gradient(90deg,#5a1a1a,#3a1a4a);border-color:#ffb02a;color:#fff}
+#worldban{position:fixed;left:50%;top:30%;transform:translate(-50%,-50%);z-index:60;pointer-events:none;text-align:center;padding:14px 22px;border-radius:18px;background:#0b0f24ee;border:2px solid #ffd76a;color:#fff;font-weight:800;box-shadow:0 0 40px #000a;max-width:86vw;opacity:0}#worldban b{display:block;font-size:26px}#worldban span{font-size:13px;font-weight:600;color:#ffe9a8}#worldban.boss{border-color:#ff5a2a;background:linear-gradient(135deg,#4a0f0f,#2a1048)}`;
+const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
+const tag=document.createElement('div');tag.id='worldtag';tag.style.display='none';
+const gl=document.getElementById('goal');if(gl&&gl.parentNode)gl.parentNode.insertBefore(tag,gl.nextSibling);
+const ban=document.createElement('div');ban.id='worldban';document.body.appendChild(ban);
+function banner(w,lv,boss){try{if(R())return}catch{}
+ const tw=w.tw?TW[w.tw]:null,tl=te;
+ ban.className=boss?'boss':'';
+ ban.innerHTML='<b>'+(boss?'👑 BOSS LEVEL '+lv:w.e+' '+(tl?w.nt:w.n)+' · '+lv)+'</b><span>'+(boss?(tl?'స్కోర్ ×2 · కఠినమైన బోర్డ్':'Score ×2 · tougher board'):(tw?tw[0]+' '+(tl?tw[2]:tw[1]):(tl?'కొత్త ప్రపంచం':'New world')))+'</span>';
+ ban.animate([{opacity:0,transform:'translate(-50%,-50%) scale(.6)'},{opacity:1,transform:'translate(-50%,-50%) scale(1.08)',offset:.2},{opacity:1,transform:'translate(-50%,-50%) scale(1)',offset:.8},{opacity:0,transform:'translate(-50%,-70%) scale(1)'}],{duration:1900,easing:'ease-out'}).onfinish=()=>{ban.style.opacity=0};
+}
+function skin(){const g=cur();
+ if(!g){document.body.removeAttribute('data-world');document.body.removeAttribute('data-boss');tag.style.display='none';return}
+ const wi=wOf(g.lv),w=WORLDS[wi],boss=isBoss(g.lv);
+ document.body.dataset.world=String(wi);document.body.dataset.boss=boss?'1':'0';
+ const tw=w.tw?TW[w.tw]:null,tl=te;
+ tag.className=boss?'boss':'';tag.style.display='';
+ tag.innerHTML=(boss?'👑 <b>BOSS</b> · ':'')+w.e+' <b>'+(tl?w.nt:w.n)+'</b> · '+(tl?'లెవల్ ':'Level ')+g.lv+(boss?(tl?' · స్కోర్ ×2':' · Score ×2'):'')+(tw?'<br>'+tw[0]+' '+(tl?tw[2]:tw[1]):'');
+ if(w.c){const tiles=document.getElementById('board').children;for(let i=0;i<tiles.length&&i<36;i++){const v=g.board[i];if(v>=0&&v<4)tiles[i].textContent=w.sy[v]}}
+}
+const _render=render;render=function(){_render.apply(this,arguments);try{skin()}catch(e){}};
+const _start=start;start=function(mode,o){_start.apply(this,arguments);try{const g=cur();if(g){const w=WORLDS[wOf(g.lv)];banner(w,g.lv,isBoss(g.lv));if(isBoss(g.lv)){try{sfx('big',12,2)}catch{}}}}catch(e){}};
+// twists
+const _apply=applyMove;applyMove=function(g,i,kind){
+ const r=_apply(g,i,kind);
+ try{if(r&&g.mode==='puzzle'){
+  const w=WORLDS[wOf(g.lv)],boss=isBoss(g.lv);let extra=0;
+  if(boss)extra+=r.gained;
+  if(w.tw==='wave'&&g.taps%3===0)extra+=r.gained;
+  else if(w.tw==='gold'&&r.n>=5&&kind==='grp')extra+=Math.round(r.gained*.4);
+  else if(w.tw==='combo'&&g.combo>=2)extra+=30*(g.combo-1);
+  if(extra>0){g.score+=extra;r.gained+=extra}
+  if(w.tw==='refund'&&r.n>=7&&kind==='grp'&&g.limited){g.moves++;r.refund=1;if(g.over&&!g.won&&g.moves>0)g.over=false}
+  if(extra>0&&!g.over&&goalDone(g)){g.over=true;g.won=true}
+ }}catch(e){}
+ return r};
+// varied blast sounds
+const V=[
+ (n,b)=>{tone(300+b,0,.12,'sine',.55,3.2);noise(0,.05,.3,6000,1500,'highpass')},
+ (n,b)=>{clink(0,900+b*2,.4);clink(.05,1350+b,.3);noise(0,.08,.25,8000,2000,'highpass')},
+ (n,b)=>{tone(120,0,.2,'sine',.8,.25);noise(0,.12,.5,2200,200,'lowpass')},
+ (n,b)=>{[0,1,2].forEach(i=>tone(520+b+i*190,i*.05,.14,'triangle',.32));noise(0,.06,.3,5000,900,'highpass')},
+ (n,b)=>{tone(1800,0,.18,'sawtooth',.2,.12);tone(900,.02,.14,'square',.12,.3);noise(0,.1,.35,4000,500,'bandpass')},
+ (n,b)=>{tone(200,0,.08,'square',.4,2.5);tone(500+b,.07,.16,'sine',.45,.6)},
+ (n,b)=>{noise(0,.22,.55,900,6000,'bandpass');tone(700+b,.02,.1,'triangle',.3)},
+ (n,b)=>{tone(880,0,.07,'square',.18);tone(1320,.07,.22,'square',.18);noise(.07,.1,.3,3000,400,'lowpass')},
+ (n,b)=>{tone(90,0,.3,'sine',.95,.3);tone(180,0,.1,'triangle',.5,.5);noise(0,.15,.5,1500,150,'lowpass')},
+ (n,b)=>{for(let i=0;i<5;i++)tone(1400+Math.random()*1800,i*.03,.08,'sine',.25,.6);noise(0,.1,.3,7000,2500,'highpass')},
+ (n,b)=>{tone(260,0,.25,'sine',.6,2.4);tone(520,.02,.2,'triangle',.3,1.8);noise(.01,.07,.3,3000,800,'bandpass')},
+ (n,b)=>{noise(0,.3,.45,5200,260,'lowpass');tone(170,0,.25,'sine',.8,.2);clink(0,1500+b,.2)}
+];
+let bag=[],last=-1;
+function pick(){if(!bag.length){bag=V.map((_,i)=>i);for(let i=bag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[bag[i],bag[j]]=[bag[j],bag[i]]}}
+ let k=bag.pop();if(k===last){if(!bag.length)bag=[k],k=(k+1+Math.floor(Math.random()*(V.length-1)))%V.length;else{const t2=bag.pop();bag.push(k);k=t2}}last=k;return k}
+const _sfx=sfx;sfx=function(k,n,cb){
+ if(k==='pop'||k==='big'){try{if(!audio())return;const v=pick(),b=Math.min(n||2,12)*40+(cb||0)*35;window.__lastPop=v;V[v](n||2,b);
+   if(n>=8){tone(55,.02,.5,'sine',.8,.5)}
+   if(k==='big'){[523,659,784,1047,1319].slice(0,3+(v%3)).forEach((f,i)=>{tone(f*(1+(v%4)*.12),.05+i*.055,.26,'triangle',.28);clink(.05+i*.055,f*2,.14)})}
+   return}catch(e){}}
+ return _sfx.apply(this,arguments)};
+window.__worlds=WORLDS;window.__sndCount=V.length;
+})();
 </script></body></html>
