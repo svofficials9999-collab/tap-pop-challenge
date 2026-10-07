@@ -1,6 +1,6 @@
 const ROOT=new URL('./',self.location.href).href;
 const PREFIX='tap-pop-shell-'+new URL(ROOT).pathname+'-';
-const CACHE=PREFIX+'v23';
+const CACHE=PREFIX+'v24';
 const SHELL=new URL('index.html',ROOT).href;
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll([SHELL,new URL('manifest.webmanifest',ROOT).href,new URL('icon.svg',ROOT).href])).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith(PREFIX)&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
