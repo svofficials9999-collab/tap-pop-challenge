@@ -660,10 +660,24 @@ try{
  if(modalOpen)pushM();
 }catch{}
 })();
-const VERSION='25';
-async function checkUpdate(){if(!navigator.onLine)return;try{const r=await fetch(location.pathname+'?_v='+Date.now(),{cache:'no-store'});if(!r.ok)return;const m=(await r.text()).match(/const VERSION='(\d+)'/);if(m&&m[1]!==VERSION){updateVersion=m[1];$('install').textContent=te?'కొత్త వెర్షన్ ↻':'Update ready ↻';$('install').onclick=()=>location.reload();if(!busy&&G&&G.taps===0&&!G.over&&!modalOpen&&!sessionStorage.getItem('tp-reloaded-'+m[1])){sessionStorage.setItem('tp-reloaded-'+m[1],'1');const u=new URL(location.href);u.searchParams.set('v',m[1]);location.replace(u.href)}}}catch{}}
-if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).then(r=>{r.update().catch(()=>{});}).catch(()=>{});}
-checkUpdate();setInterval(checkUpdate,120000);window.addEventListener('online',checkUpdate);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkUpdate()});
+const VERSION='26';
+// Update checks never clear saved scores or interrupt a round.
+let updateChecking=false;
+function safeToUpdate(){return !busy&&!modalOpen&&(!G||G.over||G.taps===0)}
+function loadNewest(v){const u=new URL(location.href);u.searchParams.set('_v',Date.now());if(v)u.searchParams.set('v',v);location.replace(u.href)}
+async function checkUpdate(){if(!navigator.onLine||updateChecking)return;updateChecking=true;try{
+ const u=new URL('./index.html',location.href);u.searchParams.set('_v',Date.now());
+ const r=await fetch(u.href,{cache:'no-store'});if(!r.ok)return;
+ const m=(await r.text()).match(/const VERSION='(\d+)'/);
+ if(m&&m[1]!==VERSION){updateVersion=m[1];$('install').textContent=te?'కొత్త వెర్షన్ ↻':'Update ready ↻';$('install').onclick=()=>loadNewest(m[1]);
+ if(safeToUpdate()&&!sessionStorage.getItem('tp-reloaded-'+m[1])){sessionStorage.setItem('tp-reloaded-'+m[1],'1');loadNewest(m[1])}}
+}catch{}finally{updateChecking=false}}
+let updateRegistration;
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).then(r=>{updateRegistration=r;r.update().catch(()=>{});}).catch(()=>{});
+ navigator.serviceWorker.addEventListener('controllerchange',()=>checkUpdate());
+ navigator.serviceWorker.addEventListener('message',e=>{if(e.data?.type==='POP_UPDATE')checkUpdate()});}
+function resumeUpdate(){updateRegistration?.update().catch(()=>{});checkUpdate()}
+checkUpdate();setInterval(checkUpdate,120000);window.addEventListener('online',resumeUpdate);window.addEventListener('pageshow',resumeUpdate);document.addEventListener('visibilitychange',()=>{if(!document.hidden)resumeUpdate()});
 // ===== v23: world themes, boss levels, level twists, varied blast sounds =====
 (function(){
 const WORLDS=[
