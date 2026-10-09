@@ -660,7 +660,7 @@ try{
  if(modalOpen)pushM();
 }catch{}
 })();
-const VERSION='27';
+const VERSION='28';
 // Update checks never clear saved scores or interrupt a round.
 let updateChecking=false;
 function safeToUpdate(){return !busy&&!modalOpen&&(!G||G.over||G.taps===0)}
@@ -766,4 +766,7 @@ const _sfx=sfx;sfx=function(k,n,cb){
  return _sfx.apply(this,arguments)};
 window.__worlds=WORLDS;window.__sndCount=V.length;
 })();
+</script><style id="modal-interaction-lock">#modal.on{z-index:2147483000!important;pointer-events:auto!important}#mbody{position:relative}#modal-close{float:right;position:sticky;top:0;min-width:44px;min-height:44px;border:1px solid #90dfff;background:#192b48;color:white;border-radius:12px;font:800 22px system-ui;margin:0 0 8px 8px}#mbody h2{padding-right:48px}body.modal-locked main{pointer-events:none!important}</style><script>
+(function(){let focusBefore=null;const main=document.querySelector('main');function sync(){const open=document.getElementById('modal').classList.contains('on');document.body.classList.toggle('modal-locked',open);if(main)main.inert=open;if(open){const box=document.getElementById('mbody');if(!document.getElementById('modal-close')){const b=document.createElement('button');b.id='modal-close';b.type='button';b.textContent='×';b.setAttribute('aria-label',document.documentElement.lang==='te'?'మూసివేయండి':'Close');b.onclick=()=>closeModal();box.prepend(b);b.focus()}}else if(focusBefore&&focusBefore.isConnected){focusBefore.focus();focusBefore=null}}
+const baseOpen=openModal;openModal=function(html){focusBefore=document.activeElement;baseOpen(html);sync()};const baseSimple=simpleModal;simpleModal=function(html){focusBefore=document.activeElement;baseSimple(html);sync()};const baseClose=closeModal;closeModal=function(){baseClose();sync()};new MutationObserver(sync).observe(document.getElementById('modal'),{attributes:true,attributeFilter:['class']});document.addEventListener('keydown',function(e){if(!document.getElementById('modal').classList.contains('on')||e.key!=='Tab')return;const a=[...document.querySelectorAll('#mbody button:not([disabled]),#mbody input:not([disabled]),#mbody a[href]')].filter(x=>x.offsetWidth);if(!a.length)return;const first=a[0],last=a[a.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});sync()})();
 </script></body></html>
