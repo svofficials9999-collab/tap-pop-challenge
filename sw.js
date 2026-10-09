@@ -1,9 +1,9 @@
 const ROOT=new URL('./',self.location.href).href;
 const PREFIX='tap-pop-shell-'+new URL(ROOT).pathname+'-';
-const CACHE=PREFIX+'v27';
+const CACHE=PREFIX+'v28';
 const SHELL=new URL('index.html',ROOT).href;
 self.addEventListener('install',event=>{event.waitUntil((async()=>{const c=await caches.open(CACHE);for(const path of ['index.html','manifest.webmanifest','icon.svg']){const key=new URL(path,ROOT);const fresh=new URL(key);fresh.searchParams.set('_v','27-'+Date.now());const r=await fetch(fresh.href,{cache:'no-store'});if(!r.ok)throw Error('Offline file unavailable');await c.put(key.href,r)}await self.skipWaiting()})())});
-self.addEventListener('activate',event=>{event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith(PREFIX)&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim();const clients=await self.clients.matchAll({type:'window'});for(const c of clients)c.postMessage({type:'POP_UPDATE',version:'27'})})())});
+self.addEventListener('activate',event=>{event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>k.startsWith(PREFIX)&&k!==CACHE).map(k=>caches.delete(k)));await self.clients.claim();const clients=await self.clients.matchAll({type:'window'});for(const c of clients)c.postMessage({type:'POP_UPDATE',version:'28'})})())});
 self.addEventListener('fetch',event=>{
  const u=new URL(event.request.url);if(event.request.method!=='GET'||u.origin!==self.location.origin||!u.href.startsWith(ROOT))return;
  // Version probes must never get an old offline shell disguised as a fresh response.
