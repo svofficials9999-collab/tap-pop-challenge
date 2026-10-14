@@ -9,5 +9,7 @@ self.addEventListener('fetch',event=>{
  // Version probes must never get an old offline shell disguised as a fresh response.
  if(u.searchParams.has('_v')){event.respondWith(fetch(event.request,{cache:'no-store'}));return}
  if(event.request.mode==='navigate'&&(u.pathname===new URL(ROOT).pathname||u.pathname===new URL(SHELL).pathname)){event.respondWith((async()=>{try{const r=await fetch((()=>{const f=new URL(event.request.url);f.searchParams.set('_v',Date.now());return f.href})(),{cache:'no-store'});if(r.ok){const c=await caches.open(CACHE);await c.put(SHELL,r.clone())}return r}catch{const c=await caches.open(CACHE);return await c.match(SHELL)||Response.error()}})());return}
- if(['icon.svg','icon-192.png','icon-512.png','manifest.webmanifest'].some(f=>u.href===new URL(f,ROOT).href)){event.respondWith(caches.match(event.request).then(r=>r||fetch(event.request)));}
+ // Fetch identity manifest fresh online; keep offline fallback without changing installed IDs.
+ if(u.href===new URL('manifest.webmanifest',ROOT).href){event.respondWith((async()=>{const c=await caches.open(CACHE);try{const r=await fetch(event.request,{cache:'no-store'});if(r.ok)await c.put(event.request,r.clone());return r}catch{ return await c.match(event.request)||Response.error()}})());return}
+ if(['icon.svg','icon-192.png','icon-512.png'].some(f=>u.href===new URL(f,ROOT).href)){event.respondWith(caches.match(event.request).then(r=>r||fetch(event.request)));}
 });
