@@ -8,13 +8,13 @@ function ready(fn){if(document.body){fn()}else{document.addEventListener('DOMCon
 ready(function(){
 try{
 var css=
-'.sv-ri-btn{position:fixed;right:14px;bottom:'+BOTTOM+';width:72px;height:72px;border-radius:50%;border:2px solid #d9fcff;color:#fff;background:radial-gradient(circle at 30% 20%,#57eeff,#157ab5 35%,#6b24b5 68%,#131236);box-shadow:0 0 8px #c9fbff,inset 0 0 13px #ffffff65,0 0 24px #00d9ff85,0 0 34px #af3dff65;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;cursor:pointer;z-index:9990;animation:svRiJewel 3s ease-in-out infinite;isolation:isolate;padding:0;font-family:system-ui,sans-serif;-webkit-tap-highlight-color:transparent}'
+'.sv-ri-btn{position:fixed;left:14px;bottom:'+BOTTOM+';width:72px;height:72px;border-radius:50%;border:2px solid #d9fcff;color:#fff;background:radial-gradient(circle at 30% 20%,#57eeff,#157ab5 35%,#6b24b5 68%,#131236);box-shadow:0 0 8px #c9fbff,inset 0 0 13px #ffffff65,0 0 24px #00d9ff85,0 0 34px #af3dff65;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;cursor:pointer;z-index:9990;animation:svRiJewel 3s ease-in-out infinite;isolation:isolate;padding:0;font-family:system-ui,sans-serif;-webkit-tap-highlight-color:transparent}'
 +'.sv-ri-btn:before{content:"";position:absolute;inset:-6px;border:1px dashed #66ebff;border-radius:50%;animation:svRiOrbit 14s linear infinite;z-index:-1}'
 +'.sv-ri-btn .sv-ri-arrow{font-size:26px;line-height:1;text-shadow:0 0 10px #fff}'
 +'.sv-ri-btn .sv-ri-word{font-size:9px;letter-spacing:.3px;line-height:1.5;text-align:center;font-weight:900}'
 +'.sv-ri-btn:active{transform:scale(.94)}'
 +'.sv-ri-btn:focus-visible{outline:3px solid #ffdf61;outline-offset:6px}'
-+'.sv-ri-note{position:fixed;right:14px;bottom:calc(100px + env(safe-area-inset-bottom,0px));max-width:280px;background:linear-gradient(120deg,#302049f2,#112f48f2);color:#ffe98a;border:1px solid #ffcf6dcc;border-left:4px solid #ffcf6d;border-radius:12px;padding:10px 12px;font:700 13px/1.6 "Noto Sans Telugu","Nirmala UI",system-ui,sans-serif;z-index:9991;box-shadow:0 6px 24px rgba(0,0,0,.55);text-align:left}'
++'.sv-ri-note{position:fixed;left:14px;bottom:calc(100px + env(safe-area-inset-bottom,0px));max-width:280px;background:linear-gradient(120deg,#302049f2,#112f48f2);color:#ffe98a;border:1px solid #ffcf6dcc;border-left:4px solid #ffcf6d;border-radius:12px;padding:10px 12px;font:700 13px/1.6 "Noto Sans Telugu","Nirmala UI",system-ui,sans-serif;z-index:9991;box-shadow:0 6px 24px rgba(0,0,0,.55);text-align:left}'
 +'@keyframes svRiJewel{50%{box-shadow:0 0 12px #fff,inset 0 0 16px #ffffff65,0 0 32px #00d9ff99,0 0 44px #af3dff88}}'
 +'@keyframes svRiOrbit{to{transform:rotate(360deg)}}'
 +'@media(prefers-reduced-motion:reduce){.sv-ri-btn,.sv-ri-btn:before{animation:none}}'
