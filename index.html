@@ -344,7 +344,7 @@ function sndBtn(){const b=$('snd');b.textContent=muted?'🔇':'🔊';b.setAttrib
 let vox=[];function loadVox(){try{vox=speechSynthesis.getVoices()}catch(e){}}
 if('speechSynthesis' in window){loadVox();try{speechSynthesis.onvoiceschanged=loadVox}catch(e){}}
 function speak(s){try{if(muted||!('speechSynthesis' in window)||!s)return;const lang=te?'te-IN':'en-IN';speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(s);u.lang=lang;const v=vox.find(v=>v.lang&&v.lang.toLowerCase().indexOf(te?'te':'en')===0);if(v)u.voice=v;u.rate=.95;speechSynthesis.speak(u)}catch(e){}}
-try{new MutationObserver(muts=>{const st=$('status');if(st){const txt=(st.textContent||'').trim();if(txt)speak(txt)}}).observe($('status'),{childList:true,characterData:true,subtree:true})}catch(e){}
+/* no voice announcer: status text is visual only (user request 2026-10-22) */
 const R=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
 function fx(cls,css,parent){const e=document.createElement('div');e.className=cls;e.style.cssText=css;(parent||$('fxl')).append(e);return e}
 function done(a,rm){a.finished.catch(()=>{}).then(()=>rm.remove())}
@@ -405,7 +405,7 @@ function openModal(html){$('mbody').innerHTML=html;$('modal').classList.add('on'
 function closeModal(){$('modal').classList.remove('on');modalOpen=false;lastTick=performance.now()}
 $('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalOpen)closeModal()});
-function tutorial(){openModal('<h2>'+t('tut_t')+'</h2><ol class="tut"><li>'+t('tut1')+'</li><li>'+t('tut2')+'</li><li>'+t('tut3')+'</li><li>'+t('tut4')+'</li><li>'+t('tut5')+'</li></ol><button class="primary wide" id="mgo">'+t('tut_go')+'</button>');speak(t('tut_t')+'. '+[t('tut1'),t('tut2'),t('tut3'),t('tut4'),t('tut5')].join('. '));$('mgo').onclick=()=>{ss('tp5-tut','1');closeModal()}}
+function tutorial(voiceOn){openModal('<h2>'+t('tut_t')+'</h2><ol class="tut"><li>'+t('tut1')+'</li><li>'+t('tut2')+'</li><li>'+t('tut3')+'</li><li>'+t('tut4')+'</li><li>'+t('tut5')+'</li></ol><button class="primary wide" id="mgo">'+t('tut_go')+'</button>');if(voiceOn)speak(t('tut_t')+'. '+[t('tut1'),t('tut2'),t('tut3'),t('tut4'),t('tut5')].join('. '));$('mgo').onclick=()=>{ss('tp5-tut','1');closeModal()}}
 function levelsModal(){const a=plsStars();let h='<h2>'+t('m_puzzle')+'</h2><div class="lgrid">';for(let l=1;l<=NL;l++){const st=+a[l-1]||0,open=l===1||!!a[l-2];h+='<button class="lv'+(G&&G.mode==='puzzle'&&G.lv===l?' cur':'')+'" data-l="'+l+'"'+(open?'':' disabled')+'><b>'+(open?(l%10===0?'👑'+l:l):'🔒')+'</b><span>'+(st?'★'.repeat(st)+'☆'.repeat(3-st):open?'☆☆☆':'')+'</span></button>'}
  h+='</div><button class="secondary wide" id="mclose">'+t('close')+'</button>';openModal(h);$('mclose').onclick=closeModal;$('mbody').querySelectorAll('.lv').forEach(b=>b.onclick=()=>{closeModal();go('puzzle',{lv:+b.dataset.l})})}
 function progModal(){const xp=getXp(),l=lvOf(xp),nxt=500*l*l,prv=500*(l-1)*(l-1),got=badgesGot();
@@ -548,7 +548,7 @@ $('lang').onclick=()=>{sfx('ui');te=!te;ss('tp5-lang',te?'te':'en');render();if(
 $('again').onclick=()=>{if(busy&&G.mode!=='rush')return;sfx('ui');go(G.mode,G.mode==='puzzle'?{lv:G.lv}:{seed:randomSeed()})};
 $('daily').onclick=()=>{sfx('ui');go('classic',{seed:todaySeed()})};
 $('nextlvl').onclick=()=>{sfx('ui');go('puzzle',{lv:Math.min(NL,G.lv+1)})};
-$('levels').onclick=()=>{sfx('ui');levelsModal()};$('prog').onclick=()=>{sfx('ui');progModal()};$('helpb').onclick=()=>{sfx('ui');tutorial()};
+$('levels').onclick=()=>{sfx('ui');levelsModal()};$('prog').onclick=()=>{sfx('ui');progModal()};$('helpb').onclick=()=>{sfx('ui');tutorial(true)};
 $('hint').onclick=()=>{if(G.over||busy||modalOpen)return;document.querySelectorAll('.hint').forEach(b=>b.classList.remove('hint'));const i=bestMove(G);if(i<0)return;const cells=G.board[i]>3?[i]:groupOf(G.board,i);cells.forEach(k=>$('board').children[k].classList.add('hint'));G.hints++;sfx('hint');$('status').textContent=t('hintmsg')};
 $('undo').onclick=()=>{if(busy||G.over||!G.snap||G.undoLeft<1)return;restore(G,G.snap);G.snap=null;G.undoLeft--;armed=false;sfx('undo');render();$('status').textContent=t('undone')};
 $('shuf').onclick=()=>{if(busy||G.over||G.shufLeft<1)return;G.shufLeft--;armed=false;reshuffle(G);G.snap=null;sfx('shuf');render();$('status').textContent=t('shufdone');if(!R())animateTiles([...$('board').children].slice(0,36),()=>[{transform:'scale(.3) rotate(-25deg)',opacity:.2},{transform:'scale(1.12)',offset:.7},{transform:'scale(1)',opacity:1}],{duration:boardPace(G).shuffle,easing:'ease-out'})};
