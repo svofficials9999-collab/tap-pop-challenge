@@ -3,22 +3,23 @@
 'use strict';
 if(window.__svRoundInstall)return;window.__svRoundInstall=1;
 var APP='POP RAJA';
-var BOTTOM='calc(14px + env(safe-area-inset-bottom,0px))';
+var BOTTOM='calc(84px + env(safe-area-inset-bottom,0px))';
 function ready(fn){if(document.body){fn()}else{document.addEventListener('DOMContentLoaded',fn)}}
 ready(function(){
 try{
 var css=
-'.sv-ri-btn{position:fixed;left:14px;bottom:'+BOTTOM+';width:72px;height:72px;border-radius:50%;border:2px solid #d9fcff;color:#fff;background:radial-gradient(circle at 30% 20%,#57eeff,#157ab5 35%,#6b24b5 68%,#131236);box-shadow:0 0 8px #c9fbff,inset 0 0 13px #ffffff65,0 0 24px #00d9ff85,0 0 34px #af3dff65;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;cursor:pointer;z-index:9990;animation:svRiJewel 3s ease-in-out infinite;isolation:isolate;padding:0;font-family:system-ui,sans-serif;-webkit-tap-highlight-color:transparent}'
-+'.sv-ri-btn:before{content:"";position:absolute;inset:-6px;border:1px dashed #66ebff;border-radius:50%;animation:svRiOrbit 14s linear infinite;z-index:-1}'
-+'.sv-ri-btn .sv-ri-arrow{font-size:26px;line-height:1;text-shadow:0 0 10px #fff}'
-+'.sv-ri-btn .sv-ri-word{font-size:9px;letter-spacing:.3px;line-height:1.5;text-align:center;font-weight:900}'
+'.sv-ri-btn{position:fixed;right:14px;bottom:'+BOTTOM+';width:56px;height:56px;border-radius:50%;border:2px solid #fff3;color:#fff;background:linear-gradient(135deg,#ff8a3d,#ff3d77 30%,#b03dff 58%,#2f7bff 82%,#00d4ff);box-shadow:0 0 10px #ff3d7780,inset 0 0 10px #ffffff70,0 0 22px #b03dff70,0 0 30px #00d4ff55;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;cursor:pointer;z-index:9990;animation:svRiJewel 3s ease-in-out infinite;isolation:isolate;padding:0;font-family:system-ui,sans-serif;-webkit-tap-highlight-color:transparent}'
++'.sv-ri-btn:before{content:"";position:absolute;inset:-5px;border:1px dashed #ffe27a99;border-radius:50%;animation:svRiOrbit 14s linear infinite;z-index:-1}'
++'.sv-ri-btn .sv-ri-arrow{font-size:20px;line-height:1;text-shadow:0 0 10px #fff}'
++'.sv-ri-btn .sv-ri-word{font-size:7px;letter-spacing:.2px;line-height:1.5;text-align:center;font-weight:900}'
++'.sv-ri-btn.sv-ri-on .sv-ri-arrow{color:#eaffea;text-shadow:0 0 10px #7cfc00,0 0 4px #fff}'
 +'.sv-ri-btn:active{transform:scale(.94)}'
 +'.sv-ri-btn:focus-visible{outline:3px solid #ffdf61;outline-offset:6px}'
-+'.sv-ri-note{position:fixed;left:14px;bottom:calc(100px + env(safe-area-inset-bottom,0px));max-width:280px;background:linear-gradient(120deg,#302049f2,#112f48f2);color:#ffe98a;border:1px solid #ffcf6dcc;border-left:4px solid #ffcf6d;border-radius:12px;padding:10px 12px;font:700 13px/1.6 "Noto Sans Telugu","Nirmala UI",system-ui,sans-serif;z-index:9991;box-shadow:0 6px 24px rgba(0,0,0,.55);text-align:left}'
-+'@keyframes svRiJewel{50%{box-shadow:0 0 12px #fff,inset 0 0 16px #ffffff65,0 0 32px #00d9ff99,0 0 44px #af3dff88}}'
++'.sv-ri-note{position:fixed;right:14px;bottom:calc(152px + env(safe-area-inset-bottom,0px));max-width:280px;background:linear-gradient(120deg,#302049f2,#112f48f2);color:#ffe98a;border:1px solid #ffcf6dcc;border-left:4px solid #ffcf6d;border-radius:12px;padding:10px 12px;font:700 13px/1.6 "Noto Sans Telugu","Nirmala UI",system-ui,sans-serif;z-index:9991;box-shadow:0 6px 24px rgba(0,0,0,.55);text-align:left}'
++'@keyframes svRiJewel{50%{box-shadow:0 0 14px #ff8a3d99,inset 0 0 12px #ffffff70,0 0 30px #ff3d7799,0 0 40px #00d4ff77}}'
 +'@keyframes svRiOrbit{to{transform:rotate(360deg)}}'
 +'@media(prefers-reduced-motion:reduce){.sv-ri-btn,.sv-ri-btn:before{animation:none}}'
-+'@media(max-width:380px){.sv-ri-btn{width:64px;height:64px}.sv-ri-btn .sv-ri-word{font-size:8px}}';
++'@media(max-width:380px){.sv-ri-btn{width:52px;height:52px}.sv-ri-btn .sv-ri-word{font-size:6.5px}}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 var installed=false;
 try{installed=(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true}catch(e){}
@@ -27,7 +28,7 @@ window.addEventListener('beforeinstallprompt',function(e){try{e.preventDefault()
 window.addEventListener('appinstalled',function(){installed=true;deferred=null;paint();note('\u2713 \u0C2F\u0C3E\u0C2A\u0C4D \u0C07\u0C28\u0C4D\u0C38\u0C4D\u0C1F\u0C3E\u0C32\u0C4D \u0C05\u0C2F\u0C3F\u0C02\u0C26\u0C3F \u00B7 App installed.')});
 var b=document.createElement('button');
 b.type='button';b.className='sv-ri-btn';b.id='sv-round-install';
-function paint(){b.innerHTML='<span class="sv-ri-arrow" aria-hidden="true">'+(installed?'\u2713':'\u21E9')+'</span><span class="sv-ri-word">APP INSTALL</span>';b.setAttribute('aria-label',installed?'App mode':'Install '+APP)}
+function paint(){b.classList.toggle('sv-ri-on',installed);b.innerHTML='<span class="sv-ri-arrow" aria-hidden="true">'+(installed?'\u2713':'\u21E9')+'</span><span class="sv-ri-word">APP INSTALL</span>';b.setAttribute('aria-label',installed?'App mode':'Install '+APP)}
 paint();
 var noteEl=null,noteT=null;
 function note(t){
