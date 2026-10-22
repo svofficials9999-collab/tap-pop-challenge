@@ -1213,9 +1213,36 @@ function apiFor(game){
   t:isTe
  };
 }
+function mtDemoHTML(){
+ var cells='';for(var i=0;i<9;i++){cells+='<span class="s7d-c'+(i===4?' s7d-c4':'')+(i===7?' s7d-c7':'')+'"></span>'}
+ return '<style>'
+ +'.s7d-wrap{background:#101736;border:1px solid #333d61;border-radius:14px;padding:10px;margin:6px 0 10px;text-align:center}'
+ +'.s7d-grid{display:inline-grid;grid-template-columns:repeat(3,34px);gap:6px;vertical-align:middle}'
+ +'.s7d-c{width:34px;height:34px;border-radius:9px;background:#232c4e;border:2px solid #3d4878;display:block}'
+ +'.s7d-c4{animation:s7dC4 6s infinite}.s7d-c7{animation:s7dC7 6s infinite}'
+ +'@keyframes s7dC4{0%,24%{background:#ffe27a;border-color:#ffe27a;box-shadow:0 0 12px #ffe27a}25%,100%{background:#232c4e;border-color:#3d4878;box-shadow:none}}'
+ +'@keyframes s7dC7{0%,24%{background:#232c4e;border-color:#3d4878;box-shadow:none}25%,75%{background:#ffe27a;border-color:#ffe27a;box-shadow:0 0 12px #ffe27a}76%,100%{background:#232c4e;border-color:#3d4878;box-shadow:none}}'
+ +'.s7d-letter{display:inline-block;position:relative;width:44px;height:44px;vertical-align:middle;margin-left:14px}'
+ +'.s7d-letter span{position:absolute;inset:0;font-size:26px;font-weight:900;color:#aff7d2;display:flex;align-items:center;justify-content:center;opacity:0}'
+ +'.s7d-l1{animation:s7dL1 6s infinite}.s7d-l2{animation:s7dL2 6s infinite}.s7d-l3{animation:s7dL3 6s infinite}'
+ +'@keyframes s7dL1{0%,24%{opacity:1}25%,100%{opacity:0}}'
+ +'@keyframes s7dL2{0%,24%{opacity:0}25%,49%{opacity:1}50%,100%{opacity:0}}'
+ +'@keyframes s7dL3{0%,49%{opacity:0}50%,75%{opacity:1}76%,100%{opacity:0}}'
+ +'.s7d-btns{display:flex;gap:8px;justify-content:center;margin-top:10px}'
+ +'.s7d-pill{border:2px solid #3d4878;background:#232c4e;color:#fff;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:800}'
+ +'.s7d-p1{animation:s7dP 6s infinite}.s7d-p2{animation:s7dP 6s infinite}'
+ +'@keyframes s7dP{0%,49%{background:#232c4e;border-color:#3d4878}50%,75%{background:#14532d;border-color:#3ddc84;box-shadow:0 0 12px #3ddc84}76%,100%{background:#232c4e;border-color:#3d4878}}'
+ +'.s7d-cap{font-size:11.5px;color:#ffe27a;margin-top:8px;font-weight:700}'
+ +'@media(prefers-reduced-motion:reduce){.s7d-c4,.s7d-c7,.s7d-l1,.s7d-l2,.s7d-l3,.s7d-p1,.s7d-p2{animation:none}.s7d-l1{opacity:1}}'
+ +'</style>'
+ +'<div class="s7d-wrap"><div class="s7d-grid">'+cells+'</div><div class="s7d-letter"><span class="s7d-l1">A</span><span class="s7d-l2">B</span><span class="s7d-l3">B</span></div>'
+ +'<div class="s7d-btns"><span class="s7d-pill s7d-p1">'+(isTe()?'📍 స్థానం':'📍 Position')+'</span><span class="s7d-pill s7d-p2">'+(isTe()?'🔤 అక్షరం':'🔤 Letter')+'</span></div>'
+ +'<div class="s7d-cap">'+(isTe()?'3వ సారి: ఒకే స్థానం + ఒకే అక్షరం — రెండూ ఆకుపచ్చ!':'3rd time: same square + same letter — both go green!')+'</div></div>';
+}
 function guideHTML(g){
  var rows=g.guide.map(function(r,i){return '<p style="margin:8px 0;line-height:1.55">'+(i+1)+'. '+(isTe()?r[0]:r[1])+'</p>'}).join('');
- return '<div style="text-align:left"><h3 style="margin:2px 0 8px">'+g.ic+' '+(isTe()?g.nm[0]:g.nm[1])+'</h3>'+rows+'</div>';
+ var demo=(g.id==='mindtwin'?mtDemoHTML():'');
+ return '<div style="text-align:left"><h3 style="margin:2px 0 8px">'+g.ic+' '+(isTe()?g.nm[0]:g.nm[1])+' · '+(isTe()?'ఎలా ఆడాలి':'How to play')+'</h3>'+demo+rows+'</div>';
 }
 function showGuide(g){try{if(typeof simpleModal==='function'){simpleModal(guideHTML(g));return}}catch(e){}
  try{if(typeof openModal==='function'){openModal(guideHTML(g));return}}catch(e){}
