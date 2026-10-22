@@ -8,7 +8,7 @@ function ready(fn){if(document.body){fn()}else{document.addEventListener('DOMCon
 ready(function(){
 try{
 var css=
-'.sv-ri-btn{position:fixed;right:14px;bottom:'+BOTTOM+';width:56px;height:56px;border-radius:50%;border:2px solid #fff3;color:#fff;background:linear-gradient(135deg,#ff8a3d,#ff3d77 30%,#b03dff 58%,#2f7bff 82%,#00d4ff);box-shadow:0 0 10px #ff3d7780,inset 0 0 10px #ffffff70,0 0 22px #b03dff70,0 0 30px #00d4ff55;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;cursor:pointer;z-index:9990;animation:svRiJewel 3s ease-in-out infinite;isolation:isolate;padding:0;font-family:system-ui,sans-serif;-webkit-tap-highlight-color:transparent}'
+'body button.sv-ri-btn.sv-ri-btn{position:fixed;right:14px;bottom:'+BOTTOM+';width:56px;height:56px;border-radius:50%;border:2px solid #fff3;color:#fff;background:linear-gradient(135deg,#ff8a3d,#ff3d77 30%,#b03dff 58%,#2f7bff 82%,#00d4ff);box-shadow:0 0 10px #ff3d7780,inset 0 0 10px #ffffff70,0 0 22px #b03dff70,0 0 30px #00d4ff55;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;cursor:pointer;z-index:9990;animation:svRiJewel 3s ease-in-out infinite;isolation:isolate;padding:0;font-family:system-ui,sans-serif;-webkit-tap-highlight-color:transparent}'
 +'.sv-ri-btn:before{content:"";position:absolute;inset:-5px;border:1px dashed #ffe27a99;border-radius:50%;animation:svRiOrbit 14s linear infinite;z-index:-1}'
 +'.sv-ri-btn .sv-ri-arrow{font-size:20px;line-height:1;text-shadow:0 0 10px #fff}'
 +'.sv-ri-btn .sv-ri-word{font-size:7px;letter-spacing:.2px;line-height:1.5;text-align:center;font-weight:900}'
