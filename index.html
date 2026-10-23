@@ -1324,4 +1324,27 @@ ss.__fv=2;
 if(ss.addEventListener)ss.addEventListener('voiceschanged',function(){cache={}});
 }catch(e){}})();
 </script>
+<<script>
+/* sv-pre-gen-audio v1: pre-generated Sulafat narration for known static spoken strings.
+   Hash-gated manifest: only exact known strings fetch audio; everything else keeps device TTS. */
+(function(){try{
+var MANIFEST={"987f2ab90f":"audio/tp-tutorial-987f2ab90f-te.mp3"};
+function sha10(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,"0")}).join("").slice(0,10)}).catch(function(){return null})}
+var _speak=speak,curA=null,req=0;
+speak=function(s){
+ var my=++req;
+ if(curA){try{curA.pause()}catch(e){}curA=null}
+ if(muted||!s){return}
+ sha10(String(s)).then(function(h){
+  if(my!==req)return;
+  var f=h&&MANIFEST[h];
+  if(!f){_speak(s);return}
+  try{speechSynthesis.cancel()}catch(e){}
+  var a=new Audio(f);curA=a;
+  a.onerror=function(){if(my===req)_speak(s)};
+  a.play().catch(function(){if(my===req)_speak(s)});
+ });
+};
+})()}catch(e){}})();
+</script>
 </body></html>
