@@ -37,3 +37,8 @@ This snapshots main before this documentation change. It is a rollback reference
 ## Mobile check after later changes
 
 Open the live app, switch Telugu/English, use main screens and Back, close overlays, refresh/reopen, and verify saved input/progress. Report the screen and exact steps if something fails.
+
+## 25 October 2026 - crisp futuristic tile skin
+- Visual-only tile refinement: thin cyan edge, clean faceted corner detail, stronger symbols and lower-glare solid world colours. Ice Palace retains blue/purple/teal/pink families and snowflake/diamond/star distinctions. Idle tile breathing/glow removed; pop animation, sounds, haptics and helpers retained.
+- No changes to game logic, level generation, scoring, moves, storage keys or completed stars. VERSION30/cache45. Existing safe-to-update guard remains: do not refresh an active round; current in-flight board is not claimed to be persisted across reload.
+- Tested Level29 sample score780/moves8 render stability,36tiles,Telugu/English,320-1280 layouts and legal pop scoring. User device progress not remotely altered.
